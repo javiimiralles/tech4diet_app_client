@@ -1,0 +1,25 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-title>{{ modalHeader }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-item lines="none">
+    <ion-input type="number" label="Peso (kg)" labelPlacement="floating" [value]="peso" [(ngModel)]="peso"></ion-input>
+  </ion-item>
+  <ion-text *ngIf="showError" color="danger" class="ion-padding-start">
+    El peso es incorrecto
+  </ion-text>
+</ion-content>
+
+<ion-footer class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="openDatePicker()">{{ fechaFormateada }}</ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button (click)="enviarFormulario()">Aceptar</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>

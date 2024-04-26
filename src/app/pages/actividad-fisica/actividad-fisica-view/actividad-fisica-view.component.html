@@ -1,0 +1,43 @@
+<div class="ion-padding">
+  <app-date-picker [mode]="'day'" (dateChange)="onDateChange($event)"></app-date-picker>
+
+  <div class="ion-text-center">
+    <div class="calories-display">
+      <div class="calories-number">{{ caloriasGastadas }}</div>
+      <div class="calories-text">
+        <div>calorías</div>
+        <div>gastadas</div>
+      </div>
+    </div>
+  </div>
+
+  <ion-list lines="none" *ngIf="actividadesRealizadas.length > 0">
+    <ion-list-header>
+      <h3>Tu actividad</h3>
+    </ion-list-header>
+      <ion-item *ngFor="let actividadRealizada of actividadesRealizadas; let i = index" class="ion-margin-bottom" button detail="true" (click)="goToUpdateActivity(actividadRealizada.uid)">
+        <div class="flex-container">
+          <div class="left-side">
+            <ion-label>
+              <h3>{{ getTruncatedName(actividadesFisicasPadres[i].nombre) }}</h3>
+              <p>{{ actividadRealizada.duracion }} min</p>
+            </ion-label>
+          </div>
+          <div class="right-side">
+            {{ actividadRealizada.caloriasGastadas }} cal
+          </div>
+        </div>
+      </ion-item>
+  </ion-list>
+
+  <div class="ion-text-center no-activities-container" *ngIf="actividadesRealizadas.length == 0">
+    <h2 style="color: var(--ion-color-primary);">No hay ninguna actividad realizada</h2>
+  </div>
+</div>
+
+<ion-fab slot="fixed" vertical="bottom" horizontal="end">
+  <ion-fab-button color="secondary" (click)="goToRegisterActivity()">
+    <ion-icon name="add-outline"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
+

@@ -1,0 +1,101 @@
+<ion-card>
+  <ion-card-content>
+    <!-- ======= Nombre del alimento + calorias ======= -->
+    <ion-item lines="none">
+      <ion-label class="flex-container ion-margin-top">
+        <div>
+          <div class="product-title">{{ alimento.nombre }}</div>
+          <p *ngIf="alimento.marca != null" class="subtitle">{{ alimento.marca }}</p>
+        </div>
+        <div>
+          <h1 class="d-inline primary-color" color="primary">{{ caloriasCalculadas | number: '1.0-2' }}</h1><span class="calorias-span primary-color"> cal</span>
+        </div>
+      </ion-label>
+    </ion-item>
+    <!-- ======= Fin Nombre del alimento + calorias ======= -->
+
+    <!-- ======= Macronutrientes ======= -->
+    <ion-grid class="macronutrientes-container">
+      <ion-row class="ion-text-center">
+        <ion-col class="secondary-color" size="4">
+          <p>Hidratos</p>
+          <h2>{{ carbosCalculados | number: '1.0-2' }}</h2>
+        </ion-col>
+        <ion-col class="warning-color"  size="4">
+          <p>Proteínas</p>
+          <h2>{{ proteinasCalculadas | number: '1.0-2' }}</h2>
+        </ion-col>
+        <ion-col class="custom-yellow-color"  size="4">
+          <p>Grasas</p>
+          <h2>{{ grasasCalculadas | number: '1.0-2' }}</h2>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <!-- ======= Fin Macronutrientes ======= -->
+
+    <!-- ======= Input ======= -->
+    <ion-item lines="none">
+      <ion-input
+        [(ngModel)]="cantidadInput"
+        id="input-cantidad"
+        type="number"
+        labelPlacement="floating"
+        label="Cantidad"
+        aria-label="Cantidad"
+        [value]="alimento.cantidadReferencia"
+        (ionInput)="onCantidadInputChange($event)">
+      </ion-input>
+      <ion-label style="font-size: 16px;" class="ion-padding-start">{{ alimento.unidadMedida }}</ion-label>
+    </ion-item>
+    <div *ngIf="errorMensaje" class="ion-padding-start danger-color">
+      {{ errorMensaje }}
+    </div>
+
+    <ion-row class="ion-margin-top">
+      <ion-col size="6">
+        <ion-button (click)="registrarAlimentoConsumido()" color="success" expand="block"><i class="fa-solid fa-plus ion-margin-end"></i> Añadir</ion-button>
+      </ion-col>
+      <ion-col size="6">
+        <ion-button color="primary" expand="block" [routerLink]="['/alimentos/form', alimento.uid]"><i class="fa-regular fa-pen-to-square ion-margin-end"></i> Editar</ion-button>
+      </ion-col>
+    </ion-row>
+    <!-- ======= Fin Input ======= -->
+  </ion-card-content>
+</ion-card>
+
+<!-- ======= Información nutricional ======= -->
+<ion-card>
+  <ion-card-header style="padding-bottom: 0;">
+    <ion-card-title>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="8">
+            Información nutricional
+          </ion-col>
+          <ion-col size="2">
+            {{ alimento.cantidadReferencia | number: '1.0-2' }} {{ unidadAbrebiada }}
+          </ion-col>
+          <ion-col size="2">
+            {{ (cantidadInput != null ? cantidadInput  : 0) | number: '1.0-2' }} {{ unidadAbrebiada }}
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+    <ion-grid>
+      <ion-row *ngFor="let item of infoNutricional" class="{{ item.color }}">
+        <ion-col size="8">
+          {{ item.texto }}
+        </ion-col>
+        <ion-col size="2">
+          {{ item.valorReferencia | number: '1.0-2' }}
+        </ion-col>
+        <ion-col size="2">
+          {{ item.valorCalculado | number: '1.0-2' }}
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card-content>
+</ion-card>
+<!-- ======= Fin Información nutricional ======= -->

@@ -1,0 +1,45 @@
+.upload-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 70vh;
+}
+
+.custum-file-upload {
+  height: 200px;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: space-between;
+  gap: 20px;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+.custum-file-upload .icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.custum-file-upload .icon svg {
+  height: 80px;
+  fill: var(--ion-color-primary);
+}
+
+.custum-file-upload .text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.custum-file-upload .text span {
+  font-weight: 400;
+  color: var(--ion-color-primary);
+}
+
+.custum-file-upload input {
+  display: none;
+}

@@ -1,0 +1,78 @@
+<div class="ion-padding" *ngIf="!borrandoCuenta">
+  <!--=============== Datos personales form ===================-->
+  <div class="ion-padding-bottom">
+    <h4 class="title">Información personal</h4>
+    <ion-list lines="none">
+      <ion-item class="ion-margin-bottom">
+        <ion-input label="Nombre" labelPlacement="floating" [(ngModel)]="nombre"></ion-input>
+      </ion-item>
+      <ion-item class="ion-margin-bottom">
+        <ion-input label="Email" labelPlacement="floating" [(ngModel)]="email"></ion-input>
+      </ion-item>
+      <ion-row>
+        <ion-col size="6">
+          <ion-item class="ion-margin-bottom">
+            <ion-input label="Altura (cm)" labelPlacement="floating" [(ngModel)]="altura"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size="6">
+          <ion-item class="ion-margin-bottom">
+            <ion-input label="Edad" labelPlacement="floating" [(ngModel)]="edad"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-radio-group [value]="sexo" (ionChange)="handleGenderChange($event)">
+        <ion-row>
+          <ion-col size="6">
+            <ion-item>
+              <ion-radio value="HOMBRE">Hombre</ion-radio>
+            </ion-item>
+          </ion-col>
+          <ion-col size="6">
+            <ion-item>
+              <ion-radio value="MUJER">Mujer</ion-radio>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-radio-group>
+    </ion-list>
+
+    <ion-button color="success" expand="block" (click)="updateUser()">Guardar</ion-button>
+  </div>
+  <!--=============== Fin Datos personales form ===================-->
+
+  <!--=============== Otras opciones ===================-->
+  <div>
+    <h4 class="title">Otras opciones</h4>
+    <ion-list lines="none">
+      <ion-item class="ion-margin-bottom" button detail="true" (click)="openPesoObjetivoModal()">
+        <ion-label>{{ establecerObjetivoTxt }}</ion-label>
+      </ion-item>
+      <ion-item class="ion-margin-bottom" button detail="true" (click)="openCambiarPlanModal()">
+        <ion-label>Cambiar plan</ion-label>
+      </ion-item>
+      <ion-item class="ion-margin-bottom" button detail="true" (click)="openCambiarNivelActividadModal()">
+        <ion-label>Cambiar nivel de actividad física</ion-label>
+      </ion-item>
+      <ion-item class="ion-margin-bottom" button detail="true" (click)="openDistribucionComidasModal()">
+        <ion-label>Editar distribución de comidas</ion-label>
+      </ion-item>
+      <ion-item class="ion-margin-bottom" button detail="true" (click)="openCambiarPasswordModal()">
+        <ion-label>Cambiar contraseña</ion-label>
+      </ion-item>
+      <ion-item-divider></ion-item-divider>
+      <ion-item class="ion-margin-bottom ion-margin-top" button (click)="logout()">
+        <ion-icon name="log-out-outline" color="primary" slot="start"></ion-icon>
+        <ion-label>Cerrar sesión</ion-label>
+      </ion-item>
+      <ion-item class="ion-margin-bottom" button (click)="presentDeleteAccountAlert()">
+        <ion-icon name="trash-outline" color="danger" slot="start"></ion-icon>
+        <ion-label color="danger">Eliminar cuenta</ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+  <!--=============== Fin Otras opciones ===================-->
+</div>
+
+<app-loader *ngIf="borrandoCuenta" [message]="'Eliminando datos...'"></app-loader>
+

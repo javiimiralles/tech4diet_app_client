@@ -1,0 +1,75 @@
+<!-- ================== Resumen del dia ================== -->
+<ion-card class="ion-text-center" (click)="redirectTo('/alimentos')">
+  <ion-card-header>
+    <ion-card-title style="font-size: medium;"><b>Resumen del día</b></ion-card-title>
+  </ion-card-header>
+  <ion-card-content *ngIf="!loadingDiario">
+    <ion-row>
+      <ion-col size="12">
+        <app-progress-bar [progressValue]="diario.caloriasConsumidas" [maxValue]="planUsuario.caloriasDiarias" color="var(--ion-color-tertiary)" label="Calorías" size="LARGE"></app-progress-bar>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="4">
+        <app-progress-bar [progressValue]="diario.carbosConsumidos" [maxValue]="planUsuario.carbosDiarios" color="var(--ion-color-secondary)" label="Hidratos" size="SMALL"></app-progress-bar>
+      </ion-col>
+      <ion-col size="4">
+        <app-progress-bar [progressValue]="diario.proteinasConsumidas" [maxValue]="planUsuario.proteinasDiarias" color="var(--ion-color-warning)" label="Proteínas" size="SMALL"></app-progress-bar>
+      </ion-col>
+      <ion-col size="4">
+        <app-progress-bar [progressValue]="diario.grasasConsumidas" [maxValue]="planUsuario.grasasDiarias" color="var(--ion-color-custom-yellow)" label="Grasas" size="SMALL"></app-progress-bar>
+      </ion-col>
+    </ion-row>
+  </ion-card-content>
+  <ion-card-content *ngIf="loadingDiario">
+      <ion-spinner color="secondary"></ion-spinner>
+  </ion-card-content>
+</ion-card>
+<!-- ================== Fin Resumen del dia ================== -->
+
+<!-- ================== Resumen peso ================== -->
+<ion-card class="weight-card" (click)="redirectTo('/registros-peso')">
+  <ion-card-header>
+    <ion-card-title class="ion-text-center" style="font-size: medium;"><b>Peso</b></ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+    <ion-grid>
+      <ion-row>
+        <ion-col [size]="pesoObjetivo ? 6 : 12" class="ion-text-center">
+          <ion-icon name="scale-outline"></ion-icon>
+          <div>Actual</div>
+          <div><strong>{{ pesoActual }} kg</strong></div>
+        </ion-col>
+        <ion-col *ngIf="pesoObjetivo != null" size="6" class="ion-text-center">
+          <ion-icon name="flag-outline"></ion-icon>
+          <div>Objetivo</div>
+          <div><strong>{{ pesoObjetivo }} kg</strong></div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card-content>
+</ion-card>
+<!-- ================== Fin Resumen peso ================== -->
+
+<!-- ================== Resumen actividad fisica ================== -->
+<ion-card class="weight-card" (click)="redirectTo('/actividad-fisica')">
+  <ion-card-header>
+    <ion-card-title class="ion-text-center" style="font-size: medium;"><b>Actividad física</b></ion-card-title>
+  </ion-card-header>
+  <ion-card-content *ngIf="!loadingDiario">
+    <div class="ion-text-center">
+      <div class="calories-display">
+        <div class="calories-number">{{ diario.caloriasGastadas }}</div>
+        <div class="calories-text">
+          <div>calorías</div>
+          <div>gastadas</div>
+        </div>
+      </div>
+    </div>
+  </ion-card-content>
+  <ion-card-content *ngIf="loadingDiario">
+    <ion-spinner color="secondary"></ion-spinner>
+</ion-card-content>
+</ion-card>
+<!-- ================== Fin Resumen actividad fisica ================== -->
+

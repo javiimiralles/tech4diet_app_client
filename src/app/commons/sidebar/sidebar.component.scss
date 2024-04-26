@@ -1,0 +1,15 @@
+ion-icon {
+  color: var(--ion-color-primary);
+  margin-right: 10px;
+  font-size: large;
+}
+
+ion-item {
+  color: var(--ion-color-primary);
+  border: none;
+  --background: var(--ion-color-light) !important;
+}
+
+.bold {
+  font-weight: bold;
+}

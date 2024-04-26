@@ -1,0 +1,29 @@
+<div class="ion-padding">
+  <app-date-picker [mode]="'day'" (dateChange)="onDateChange($event)"></app-date-picker>
+</div>
+
+<div class="ion-padding">
+  <app-progress-bar (click)="presentAlert()" [progressValue]="diario.aguaConsumida" [maxValue]="aguaRecomendada" color="var(--ion-color-custom-blue)" label="Agua consumida" size="LARGE" unidadMedida="ml"></app-progress-bar>
+</div>
+
+<ion-list lines="none" class="ion-padding">
+  <ion-item class="ion-margin-bottom">
+    <i class="fa-solid fa-droplet"></i>
+    <ion-label class="ion-margin-start">250 ml</ion-label>
+    <ion-icon name="add-circle" slot="end" (click)="editarAguaConsumida(250, false)"></ion-icon>
+  </ion-item>
+  <ion-item class="ion-margin-bottom">
+    <i class="fa-solid fa-glass-water"></i>
+    <ion-label class="ion-margin-start">500 ml</ion-label>
+    <ion-icon name="add-circle" slot="end" (click)="editarAguaConsumida(500, false)"></ion-icon>
+  </ion-item>
+  <ion-item class="ion-margin-bottom">
+    <i class="fa-solid fa-bottle-water"></i>
+    <ion-label class="ion-margin-start">1000 ml</ion-label>
+    <ion-icon name="add-circle" slot="end" (click)="editarAguaConsumida(1000, false)"></ion-icon>
+  </ion-item>
+  <ion-item class="ion-margin-bottom">
+    <ion-input type="number" label="Cantidad personalizada" labelPlacement="floating" [(ngModel)]="aguaPersonalizada"></ion-input>
+    <ion-icon name="add-circle" slot="end" (click)="editarAguaConsumida(aguaPersonalizada, false)"></ion-icon>
+  </ion-item>
+</ion-list>

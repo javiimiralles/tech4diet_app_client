@@ -1,0 +1,10 @@
+<div class="progress-container ion-text-center">
+  <div class="label" [style.font-size]="size === 'LARGE' ? 'medium' : ''">{{ label }}</div>
+  <div class="progress-background" [style.height]="height">
+    <div class="progress-bar" [style.background-color]="color" [style.width]="percentage" [style.height]="height"></div>
+    <div *ngIf="size === 'LARGE'" class="progress-text" [style.line-height]="height">{{ progressValue }}/{{ maxValue }} {{ unidadMedida }}</div>
+  </div>
+  <span *ngIf="size === 'SMALL'" class="progress-text-small">{{ progressValue }}/{{ maxValue }}</span>
+</div>
+
+

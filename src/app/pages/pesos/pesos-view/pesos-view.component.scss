@@ -1,0 +1,21 @@
+.card-objetivo ion-card-content {
+  color: black;
+}
+
+ion-item-option[color="danger"] {
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+.date-text {
+  font-size: small;
+  color: gray;
+}
+
+.list-historico {
+  background-color: white;
+}
+
+.list-historico ion-item, .imc-item {
+  border: none;
+}

@@ -1,0 +1,18 @@
+<div class="custom-tab-bar">
+  <a class="tab-item" routerLink="/home" routerLinkActive #rlaHome="routerLinkActive">
+    <ion-icon *ngIf="rlaHome.isActive; else homeOutline" name="home"></ion-icon>
+    <ng-template #homeOutline><ion-icon name="home-outline"></ion-icon></ng-template>
+  </a>
+  <a class="tab-item" routerLink="/alimentos" routerLinkActive #rlaAlimentos="routerLinkActive">
+    <ion-icon *ngIf="rlaAlimentos.isActive; else restaurantOutline" name="restaurant"></ion-icon>
+    <ng-template #restaurantOutline><ion-icon name="restaurant-outline"></ion-icon></ng-template>
+  </a>
+  <a class="tab-item" routerLink="/registros-peso" routerLinkActive #rlaPeso="routerLinkActive">
+    <ion-icon *ngIf="rlaPeso.isActive; else scaleOutline" name="scale"></ion-icon>
+    <ng-template #scaleOutline><ion-icon name="scale-outline"></ion-icon></ng-template>
+  </a>
+  <a class="tab-item" routerLink="/actividad-fisica" routerLinkActive #rlaActividad="routerLinkActive">
+    <ion-icon *ngIf="rlaActividad.isActive; else walkOutline" name="walk"></ion-icon>
+    <ng-template #walkOutline><ion-icon name="walk-outline"></ion-icon></ng-template>
+  </a>
+</div>

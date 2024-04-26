@@ -1,0 +1,7 @@
+<ion-fab *ngIf="!loading" slot="fixed" vertical="top" horizontal="start" (click)="goBack()">
+  <ion-fab-button color="danger">
+    <ion-icon name="close-outline"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
+
+<app-loader *ngIf="loading" [message]="'Realizando búsqueda'"></app-loader>

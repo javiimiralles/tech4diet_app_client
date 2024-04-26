@@ -1,0 +1,117 @@
+<ion-segment (ionChange)="onSegmentChange($event)" [value]="segmentActual">
+  <ion-segment-button value="diario">
+    <ion-label>Diario</ion-label>
+  </ion-segment-button>
+  <ion-segment-button value="estadisticas">
+    <ion-label>Estadísticas</ion-label>
+  </ion-segment-button>
+</ion-segment>
+
+<div class="ion-padding">
+  <app-date-picker [mode]="'day'" (dateChange)="onDateChange($event)"></app-date-picker>
+</div>
+
+<div *ngIf="segmentActual === 'diario'">
+  <!-- ====== Barras de progreso ====== -->
+  <div class="ion-padding" *ngIf="!loading">
+    <app-progress-bar [progressValue]="diario.caloriasConsumidas" [maxValue]="planUsuario.caloriasDiarias" color="var(--ion-color-tertiary)" label="Calorías" size="LARGE"></app-progress-bar>
+    <ion-row>
+      <ion-col size="4">
+        <app-progress-bar [progressValue]="diario.carbosConsumidos" [maxValue]="planUsuario.carbosDiarios" color="var(--ion-color-secondary)" label="Hidratos" size="SMALL"></app-progress-bar>
+      </ion-col>
+      <ion-col size="4">
+        <app-progress-bar [progressValue]="diario.proteinasConsumidas" [maxValue]="planUsuario.proteinasDiarias" color="var(--ion-color-warning)" label="Proteínas" size="SMALL"></app-progress-bar>
+      </ion-col>
+      <ion-col size="4">
+        <app-progress-bar [progressValue]="diario.grasasConsumidas" [maxValue]="planUsuario.grasasDiarias" color="var(--ion-color-custom-yellow)" label="Grasas" size="SMALL"></app-progress-bar>
+      </ion-col>
+    </ion-row>
+  </div>
+  <div class="ion-padding ion-text-center" *ngIf="loading">
+    <ion-spinner color="secondary"></ion-spinner>
+  </div>
+  <!-- ====== Fin Barras de progreso ====== -->
+
+  <!-- ====== Registro de alimentos ====== -->
+  <ion-card *ngFor="let categoria of distribucionComidas; let i = index;">
+    <ion-card-header>
+      <ion-card-title>
+        <div class="flex-container">
+          <div><b>{{ categoria }}</b></div>
+          <div class="right-side"><span>{{ caloriasTotalesPorCategoria[i] }} cal</span></div>
+        </div>
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ng-container *ngFor="let alimento of diario.alimentosConsumidos; let j = index;">
+          <ion-item *ngIf="alimento.categoria === categoria || (!distribucionComidas.includes(alimento.categoria) && categoria === 'Otras comidas')"
+                (click)="presentOptionsAlert(j)">
+            <ion-label class="flex-container">
+              <div class="left-side">
+                <div style="font-size: 14px;" >{{ alimento.idAlimento.nombre }}</div>
+                <p class="subtitle">{{ getSubtituloAlimento(alimento) }}</p>
+              </div>
+              <div class="right-side">
+                <div>{{ alimento.calorias }} cal</div>
+                <div>
+                  <span class="secondary-color">H: {{ alimento.carbohidratos }}</span>
+                  <span class="warning-color"> P: {{ alimento.proteinas }}</span>
+                  <span class="custom-yellow-color"> G: {{ alimento.grasas }}</span>
+                </div>
+              </div>
+            </ion-label>
+          </ion-item>
+        </ng-container>
+      </ion-list>
+    </ion-card-content>
+    <ion-button (click)="irAListadoDeAlimentos(categoria)" color="success" fill="clear"><ion-icon name="add-circle"></ion-icon>&nbsp; Añadir alimento</ion-button>
+  </ion-card>
+  <!-- ====== Registro de alimentos ====== -->
+</div>
+
+<div *ngIf="segmentActual === 'estadisticas'">
+    <!-- ======= Graficos ======== -->
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title class="ion-padding-start">
+          <div class="flex-container">
+            <div>Distribución de calorías</div>
+          </div>
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <div id="chart1" *ngIf="chartOptionsCalorias != null">
+          <apx-chart
+            [series]="chartOptionsCalorias.series"
+            [chart]="chartOptionsCalorias.chart"
+            [colors]="chartOptionsCalorias.colors"
+            [grid]="chartOptionsCalorias.grid"
+            [plotOptions]="chartOptionsCalorias.plotOptions"
+          ></apx-chart>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title class="ion-padding-start">
+          <div class="flex-container">
+            <div>Distribución de macronutrientes</div>
+          </div>
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <div id="chart2" *ngIf="chartOptionsMacros != null">
+          <apx-chart
+            [series]="chartOptionsMacros.series"
+            [chart]="chartOptionsMacros.chart"
+            [labels]="chartOptionsMacros.labels"
+            [colors]="chartOptionsMacros.colors"
+          ></apx-chart>
+        </div>
+      </ion-card-content>
+    </ion-card>
+    <!-- ======= Fin Graficos ======== -->
+</div>
+

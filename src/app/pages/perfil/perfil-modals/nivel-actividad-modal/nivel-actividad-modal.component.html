@@ -1,0 +1,32 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="close()">
+        <ion-icon slot="icon-only" name="chevron-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Cambiar nivel de actividad</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  <ion-list lines="none">
+    <ion-radio-group [value]="nivelActividad" (click)="handleNivelActividadChange($event)">
+      <ion-item class="ion-margin-bottom">
+        <ion-radio value="Sedentario">Sedentario</ion-radio>
+      </ion-item>
+      <ion-item class="ion-margin-bottom">
+        <ion-radio value="Moderado">Moderado</ion-radio>
+      </ion-item>
+      <ion-item class="ion-margin-bottom">
+        <ion-radio value="Alto">Alto</ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-radio value="Muy alto">Muy alto</ion-radio>
+      </ion-item>
+    </ion-radio-group>
+  </ion-list>
+</ion-content>
+<ion-footer class="ion-padding ion-no-border">
+  <ion-button color="success" expand="block" (click)="confirm()">Aceptar</ion-button>
+</ion-footer>
+

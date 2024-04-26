@@ -1,0 +1,39 @@
+<div *ngIf="!subiendoFoto">
+  <!-- ======= Album de imagenes ======== -->
+  <div class="ion-padding">
+    <app-date-picker [mode]="'day'" [startDate]="selectedDate" (dateChange)="onDateChange($event)"></app-date-picker>
+
+    <ion-grid>
+      <ion-row>
+        <ion-col size="6" *ngFor="let foto of fotosProgreso; let i = index">
+          <img [src]="foto.url" height="250" width="250" (click)="openLightbox(i, foto.uid)">
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <div *ngIf="fotosProgreso.length === 0" class="no-photos-container">
+      <ion-text class="ion-text-center" color="primary">
+        <h3>No se ha encontrado ninguna foto</h3>
+      </ion-text>
+    </div>
+  </div>
+  <!-- ======= Fin Album de imagenes ======== -->
+
+  <!-- ======= Boton subir foto ======== -->
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button color="secondary">
+      <ion-icon name="add-outline"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-list side="top">
+      <ion-fab-button (click)="uploadPhoto(false)">
+        <ion-icon name="camera-outline"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button (click)="uploadPhoto(true)">
+        <ion-icon name="image-outline"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+  </ion-fab>
+  <!-- ======= Fin Boton subir foto ======== -->
+</div>
+
+<app-loader *ngIf="subiendoFoto" message="Subiendo foto"></app-loader>

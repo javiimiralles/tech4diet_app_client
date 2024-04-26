@@ -1,0 +1,126 @@
+<!-- ======= Segments ======== -->
+<ion-segment (ionChange)="onSegmentChange($event)" value="listado">
+  <ion-segment-button value="listado">
+    <ion-label>Listado</ion-label>
+  </ion-segment-button>
+  <ion-segment-button value="estadisticas">
+    <ion-label>Estadísticas</ion-label>
+  </ion-segment-button>
+</ion-segment>
+<!-- ======= Fin Segments ======== -->
+
+<!-- ======= Date picker ======== -->
+<div class="ion-padding">
+  <app-date-picker [mode]="'period'" (dateChange)="onDateChange($event)"></app-date-picker>
+</div>
+<!-- ======= Fin Date picker ======== -->
+
+<!-- ======= Listado de registros de peso ======== -->
+<ion-list lines="none" *ngIf="segmentActual === 'listado' && registrosPeso.length > 0" class="ion-padding">
+  <ion-item *ngFor="let registro of registrosPeso; let i = index" class="ion-margin-bottom" (click)="presentAlert(registro)">
+    <ion-grid>
+      <ion-row>
+        <ion-col class="date-text" size="5">
+          {{ registro.fecha | date: 'dd/MM/yyyy' }}
+        </ion-col>
+        <ion-col size="4">
+          {{ registro.peso }} kg
+        </ion-col>
+        <ion-col [id]="'variacion' + i" [ngClass]="getVariacionPesoClass(i, variacionesPeso[i])" size="3">
+          <b>{{ formatVariacionPeso(i, variacionesPeso[i]) }}</b>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-item>
+</ion-list>
+<!-- ======= Fin Listado de registros de peso ======== -->
+
+
+<!-- ======= Boton crear registro peso ======== -->
+<ion-fab *ngIf="segmentActual === 'listado'" slot="fixed" vertical="bottom" horizontal="end">
+  <ion-fab-button color="secondary" (click)="openPesosFormModal(null)">
+    <ion-icon name="add-outline"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
+<!-- ======= Fin Boton crear registro peso ======== -->
+
+<!-- ======= Estadisticas ======== -->
+<div *ngIf="segmentActual === 'estadisticas'">
+  <!-- ======= Grafico ======== -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title class="ion-padding-start">
+        <div class="flex-container">
+          <div>Tu evolución</div>
+          <div *ngIf="registrosPeso.length > 10" class="right-side"><ion-icon id="click-trigger" name="information-circle-outline"></ion-icon></div>
+          <ion-popover *ngIf="registrosPeso.length > 10" trigger="click-trigger" triggerAction="click">
+            <ng-template>
+              <ion-content class="ion-padding">Información limitada a 10 registros</ion-content>
+            </ng-template>
+          </ion-popover>
+        </div>
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <div id="chart" *ngIf="chartOptions != null">
+        <apx-chart
+          [series]="chartOptions.series"
+          [chart]="chartOptions.chart"
+          [xaxis]="chartOptions.xaxis"
+          [stroke]="chartOptions.stroke"
+          [dataLabels]="chartOptions.dataLabels"
+          [markers]="chartOptions.markers"
+          [yaxis]="chartOptions.yaxis"
+          [grid]="chartOptions.grid"
+          [tooltip]="chartOptions.tooltip"
+          [colors]="chartOptions.colors"
+          [annotations]="chartOptions.annotations"
+        ></apx-chart>
+      </div>
+    </ion-card-content>
+  </ion-card>
+  <!-- ======= Fin Grafico ======== -->
+
+  <!-- ======= IMC ======== -->
+  <!-- <ion-card color="success">
+    <ion-card-header>
+      <ion-card-title class="ion-padding-start">
+        IMC
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item lines="none" class="imc-item">
+        <ion-icon [name]="nivelPeso === 'Normal' ? 'checkmark-done-outline' : 'alert-outline'" slot="start"></ion-icon>
+        <ion-label>{{ nivelPeso }}</ion-label>
+      </ion-item>
+    </ion-card-content>
+  </ion-card> -->
+  <!-- ======= Fin IMC ======== -->
+
+  <!-- ======= Historico de pesos ======== -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title class="ion-padding-start">
+        Histórico
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list class="list-historico">
+        <ion-item>
+          <ion-icon name="trending-up-outline" slot="start" [color]="objetivoUsuario === 'Perder peso' ? 'danger' : 'success'"></ion-icon>
+          <ion-label>Peso máximo: {{ pesoMaximo }} kg</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-icon name="trending-down-outline" slot="start" [color]="objetivoUsuario === 'Perder peso' ? 'success' : 'danger'"></ion-icon>
+          <ion-label>Peso mínimo: {{ pesoMinimo }} kg</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-icon name="bar-chart-outline" slot="start" color="secondary"></ion-icon>
+          <ion-label>Peso medio: {{ pesoMedio }} kg</ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+  <!-- ======= Fin Historico de pesos ======== -->
+</div>
+<!-- ======= Fin Estadisticas ======== -->

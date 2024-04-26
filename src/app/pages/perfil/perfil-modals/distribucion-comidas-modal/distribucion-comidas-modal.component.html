@@ -1,0 +1,25 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="close()">
+        <ion-icon slot="icon-only" name="chevron-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Editar distribución</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  <ion-list lines="none">
+    <ion-reorder-group [disabled]="false" (ionItemReorder)="handleReorderDistribucion($any($event))">
+      <ion-item *ngFor="let item of distribucionComidas; let i = index;" class="ion-margin" (click)="deleteComida(i)">
+        <ion-reorder slot="start"></ion-reorder>
+        <ion-label>{{ item }}</ion-label>
+        <ion-icon name="close-circle" color="danger" slot="end"></ion-icon>
+      </ion-item>
+    </ion-reorder-group>
+  </ion-list>
+  <ion-button color="success" fill="clear" (click)="presentAlert()"><ion-icon name="add-circle" style="padding-right: 10px;"></ion-icon> Añadir comida</ion-button>
+</ion-content>
+<ion-footer class="ion-padding ion-no-border">
+  <ion-button color="success" expand="block" (click)="confirm()" [disabled]="distribucionComidas.length == 0">Aceptar</ion-button>
+</ion-footer>

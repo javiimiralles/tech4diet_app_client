@@ -1,0 +1,23 @@
+<div class="ion-padding">
+  <ion-list lines="none">
+    <ion-item>
+      <ion-input label="Nombre*" labelPlacement="floating" [(ngModel)]="nombre"></ion-input>
+    </ion-item>
+    <ion-text *ngIf="showNombreError" color="danger">
+      El nombre es obligatorio
+    </ion-text>
+    <ion-item class="ion-margin-top">
+      <ion-input type="number" label="Tiempo de referencia*" labelPlacement="floating" [(ngModel)]="tiempoReferencia"></ion-input> min
+    </ion-item>
+    <ion-text *ngIf="showTiempoError" color="danger">
+      El tiempo de referencia es obligatorio
+    </ion-text>
+    <ion-item class="ion-margin-top">
+      <ion-input type="number" label="Calorías*" labelPlacement="floating" [(ngModel)]="calorias"></ion-input> cal
+    </ion-item>
+    <ion-text *ngIf="showCaloriasError" color="danger">
+      Las calorías son obligatorias
+    </ion-text>
+  </ion-list>
+  <ion-button class="ion-margin-top" color="success" expand="block" [disabled]="disabledButton" (click)="submit()">Aceptar</ion-button>
+</div>

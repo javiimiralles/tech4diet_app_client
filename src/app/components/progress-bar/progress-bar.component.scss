@@ -1,0 +1,32 @@
+.progress-container {
+  .label {
+    margin-bottom: 5px;
+    font-size: 0.8rem;
+  }
+  .progress-background {
+    width: 100%;
+    background-color: var(--ion-color-tertiary-tint);
+    border-radius: 50px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .progress-bar {
+    height: 20px;
+    border-radius: 50px;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  .progress-text {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    color: black;
+  }
+}
+
+.progress-text-small {
+  font-size: small;
+}

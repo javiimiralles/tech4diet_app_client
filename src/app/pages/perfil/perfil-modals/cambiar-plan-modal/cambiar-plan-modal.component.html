@@ -1,0 +1,30 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="close()">
+        <ion-icon slot="icon-only" name="chevron-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Cambiar plan</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  <ion-card class="card card-banana" [ngClass]="plan.tipo === 'Ganar peso' ? 'selected-banana' : ''" (click)="selectPlan('Ganar peso')">
+    <ion-card-header>
+      <ion-card-title><strong>Ganar peso</strong></ion-card-title>
+    </ion-card-header>
+  </ion-card>
+  <ion-card class="card card-apple" [ngClass]="plan.tipo === 'Mantener peso' ? 'selected-apple' : ''" (click)="selectPlan('Mantener peso')">
+    <ion-card-header>
+      <ion-card-title><strong>Mantener peso</strong></ion-card-title>
+    </ion-card-header>
+  </ion-card>
+  <ion-card class="card card-watermelon" [ngClass]="plan.tipo === 'Perder peso' ? 'selected-watermelon' : ''" (click)="selectPlan('Perder peso')">
+    <ion-card-header>
+      <ion-card-title><strong>Perder peso</strong></ion-card-title>
+    </ion-card-header>
+  </ion-card>
+</ion-content>
+<ion-footer class="ion-padding ion-no-border">
+  <ion-button color="success" expand="block" (click)="confirm()">Aceptar</ion-button>
+</ion-footer>

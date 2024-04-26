@@ -1,0 +1,20 @@
+<ion-grid [ngClass]="'ion-text-' + align">
+  <ion-row>
+    <ion-col>
+      <ion-icon name="chevron-up-outline" (click)="increaseNumber()" (touchstart)="startIncreasing()" (touchend)="resetTimers()" (mousedown)="startIncreasing()" (mouseup)="resetTimers()"></ion-icon>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col [class]="'number ' + size">
+      {{ selectedNumber }}<span *ngIf="dot">.</span><span [class]="'unidad-' + size">{{ unidad }}</span>
+    </ion-col>
+  </ion-row>
+  <ion-row style="padding-top: 20px;">
+    <ion-col>
+      <ion-icon name="chevron-down-outline" (click)="decreaseNumber()" (touchstart)="startDecreasing()" (touchend)="resetTimers()" (mousedown)="startDecreasing()" (mouseup)="resetTimers()"></ion-icon>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+
+
+

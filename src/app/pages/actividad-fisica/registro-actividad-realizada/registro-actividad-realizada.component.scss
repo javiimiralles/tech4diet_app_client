@@ -1,0 +1,10 @@
+.cal-gastadas-column {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.cal-gastadas-column span {
+  font-size: 2rem;
+  color: var(--ion-color-success);
+}

@@ -1,0 +1,162 @@
+[
+  {
+    "nombre_pred":"Apple Pie",
+    "nombre": "Tarta de manzana",
+    "calorias": 237,
+    "grasas": 10.6,
+    "carbohidratos": 32.3,
+    "proteinas": 2.2
+  },
+  {
+    "nombre_pred":"Caesar Salad",
+    "nombre": "Ensalada césar",
+    "calorias": 137,
+    "grasas": 11.9,
+    "carbohidratos": 8.3,
+    "proteinas": 8.5
+  },
+  {
+    "nombre_pred":"Cheesecake",
+    "nombre": "Tarta de queso",
+    "calorias": 321,
+    "grasas": 22.7,
+    "carbohidratos": 23.6,
+    "proteinas": 6.3
+  },
+  {
+    "nombre_pred":"Chicken curry",
+    "nombre": "Pollo al curry",
+    "calorias": 160,
+    "grasas": 8.5,
+    "carbohidratos": 4.4,
+    "proteinas": 16.3
+  },
+  {
+    "nombre_pred":"Churros",
+    "nombre": "Churros",
+    "calorias": 401,
+    "grasas": 20.2,
+    "carbohidratos": 49.8,
+    "proteinas": 4.2
+  },
+  {
+    "nombre_pred":"Donuts",
+    "nombre": "Donuts",
+    "calorias": 452,
+    "grasas": 24.1,
+    "carbohidratos": 51.1,
+    "proteinas": 5.5
+  },
+  {
+    "nombre_pred":"Escargots",
+    "nombre": "Escargots",
+    "calorias": 90,
+    "grasas": 1.4,
+    "carbohidratos": 2,
+    "proteinas": 16.1
+  },
+  {
+    "nombre_pred":"Fish and chips",
+    "nombre": "Pez con patatas",
+    "calorias": 142,
+    "grasas": 4.8,
+    "carbohidratos": 11.9,
+    "proteinas": 12.7
+  },
+  {
+    "nombre_pred":"French fries",
+    "nombre": "Patatas fritas",
+    "calorias": 312,
+    "grasas": 15.5,
+    "carbohidratos": 40.3,
+    "proteinas": 3.8
+  },
+  {
+    "nombre_pred":"Greek salad",
+    "nombre": "Ensalada griega",
+    "calorias": 88,
+    "grasas": 6.2,
+    "carbohidratos": 5.2,
+    "proteinas": 4.4
+  },
+  {
+    "nombre_pred":"Hamburguer",
+    "nombre": "Hamburguesa",
+    "calorias": 250,
+    "grasas": 13.5,
+    "carbohidratos": 20,
+    "proteinas": 12.5
+  },
+  {
+    "nombre_pred":"Ice cream",
+    "nombre": "Helado",
+    "calorias": 207,
+    "grasas": 11.2,
+    "carbohidratos": 23.4,
+    "proteinas": 3.4
+  },
+  {
+    "nombre_pred":"Macarons",
+    "nombre": "Macarons",
+    "calorias": 449,
+    "grasas": 22.5,
+    "carbohidratos": 55.2,
+    "proteinas": 7.5
+  },
+  {
+    "nombre_pred":"Omelette",
+    "nombre": "Tortilla",
+    "calorias": 143,
+    "grasas": 10.6,
+    "carbohidratos": 0.7,
+    "proteinas": 12.6
+  },
+  {
+    "nombre_pred":"Paella",
+    "nombre": "Paella",
+    "calorias": 126,
+    "grasas": 3.2,
+    "carbohidratos": 16.9,
+    "proteinas": 6.4
+  },
+  {
+    "nombre_pred":"Pizza",
+    "nombre": "Pizza",
+    "calorias": 266,
+    "grasas": 10.6,
+    "carbohidratos": 31.5,
+    "proteinas": 11.4
+  },
+  {
+    "nombre_pred":"Ramen",
+    "nombre": "Ramen",
+    "calorias": 380,
+    "grasas": 14,
+    "carbohidratos": 52,
+    "proteinas": 9
+  },
+  {
+    "nombre_pred":"Spring rolls",
+    "nombre": "Rollitos de primavera",
+    "calorias": 240,
+    "grasas": 8.5,
+    "carbohidratos": 32,
+    "proteinas": 8.5
+  },
+  {
+    "nombre_pred":"Sushi",
+    "nombre": "Sushi",
+    "calorias": 141,
+    "grasas": 2.9,
+    "carbohidratos": 23,
+    "proteinas": 5.1
+  },
+  {
+    "nombre_pred":"Tacos",
+    "nombre": "Tacos",
+    "calorias": 213,
+    "grasas": 10.8,
+    "carbohidratos": 17.5,
+    "proteinas": 12.4
+  }
+]

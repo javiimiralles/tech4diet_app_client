@@ -1,0 +1,64 @@
+<div *ngIf="!capturandoAlimento">
+  <!-- ======= Segments ======== -->
+  <ion-segment (ionChange)="onSegmentChange($event)" [value]="segmentActual">
+    <ion-segment-button value="mis-alimentos">
+      <ion-label>Mis alimentos</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="biblioteca">
+      <ion-label>Biblioteca</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+  <!-- ======= Fin Segments ======== -->
+
+  <!-- ======= Searchbar ======== -->
+  <ion-searchbar class="ion-margin-top" placeholder="Buscar alimentos" [debounce]="1000" (ionInput)="onSearchbarChange($event);"></ion-searchbar>
+  <!-- ======= Fin Searchbar ======== -->
+
+  <!-- ======= No se han encontrado resultado ======== -->
+  <div class="ion-text-center ion-padding" *ngIf="noResultsFound">
+    <h1 style="color: var(--ion-color-primary);">Ups... No se han encontrado resultados</h1>
+  </div>
+  <!-- ======= Fin No se han encontrado resultado ======== -->
+
+  <!-- ======= Lista resultados ======== -->
+  <ion-list *ngIf="listaResultados.length > 0">
+    <ion-item *ngFor="let resultado of listaResultados" color="light" (click)="registrarAlimentoConsumido(resultado)">
+      <ion-label class="flex-container">
+        <div class="left-side">
+          <div style="font-size: 14px;">{{ resultado.nombre }}</div>
+          <p class="subtitle">{{ getSubtituloAlimento(resultado) }}</p>
+        </div>
+        <div class="right-side">
+          <div>{{ resultado.calorias }} cal</div>
+          <div>
+            <span class="secondary-color">H: {{ (resultado.carbohidratos) }}</span>
+            <span class="warning-color"> P: {{ resultado.proteinas }}</span>
+            <span class="custom-yellow-color"> G: {{ resultado.grasas }}</span>
+          </div>
+        </div>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+  <!-- ======= Fin Lista resultados ======== -->
+
+  <!-- ======= Boton crear alimento ======== -->
+  <ion-fab *ngIf="segmentActual === 'mis-alimentos'" slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button color="secondary">
+      <ion-icon name="add-outline"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-list side="top">
+      <ion-fab-button (click)="capturarAlimento();">
+        <ion-icon name="camera-outline"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button routerLink="/alimentos/barcode-scanner">
+        <ion-icon name="barcode-outline"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button routerLink="/alimentos/form/nuevo">
+        <ion-icon name="add-outline"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+  </ion-fab>
+  <!-- ======= Fin Boton crear alimento ======== -->
+</div>
+
+<app-loader *ngIf="capturandoAlimento" message="Capturando alimento"></app-loader>

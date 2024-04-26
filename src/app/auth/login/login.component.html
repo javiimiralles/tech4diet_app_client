@@ -1,0 +1,42 @@
+<ion-grid>
+  <ion-row>
+    <ion-col size="12">
+
+      <div class="ion-text-center">
+        <img src="../../../assets/images/logo/icon230x285.png">
+        <h3>Inicio de sesión</h3>
+      </div>
+
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <ion-item class="ion-margin-top">
+          <ion-label position="floating">Email</ion-label>
+          <ion-input formControlName="email" type="email" placeholder="ejemplo@gmail.com"></ion-input>
+        </ion-item>
+        <ion-text color="danger" class="text-error" *ngIf="loginForm.get('email').touched && loginForm.get('email').hasError('required')">
+          El correo electrónico es obligatorio.
+        </ion-text>
+        <!-- <ion-text color="danger" class="text-error" *ngIf="loginForm.get('email').hasError('email')">
+          Introduce un correo electrónico válido.
+        </ion-text> -->
+
+        <ion-item class="ion-margin-top">
+          <ion-label position="floating">Contraseña</ion-label>
+          <ion-input formControlName="password" [type]="showPassword ? 'text' : 'password'" placeholder="Introduce tu contraseña"></ion-input>
+          <ion-icon [name]="showPassword ? 'eye-off' : 'eye'" slot="end" (click)="togglePassword()"></ion-icon>
+        </ion-item>
+        <ion-text color="danger" class="text-error" *ngIf="loginForm.get('password').touched && loginForm.get('password').hasError('required')">
+          La contraseña es obligatoria.
+        </ion-text>
+
+        <ion-button class="button-icon-right ion-margin-top" color="success" expand="block" type="submit">
+          <i class="fas fa-spinner fa-spin ion-margin-end" *ngIf="waiting"></i>
+          Continuar <ion-icon name="chevron-forward"></ion-icon>
+        </ion-button>
+      </form>
+
+      <p>¿Aún no tienes una cuenta? <a routerLink="/registro">Regístrate</a></p>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+
+

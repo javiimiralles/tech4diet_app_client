@@ -1,0 +1,35 @@
+.card {
+  background-size: cover;
+  background-position: center center;
+  transition: all 0.3s ease;
+  height: 150px;
+}
+
+.card strong {
+  font-size: 25px;
+}
+
+.card-banana {
+  background-image: url('/assets/images/illustrations/banana.svg');
+}
+
+.card-apple {
+  background-image: url('/assets/images/illustrations/apple.svg');
+}
+
+.card-watermelon {
+  background-image: url('/assets/images/illustrations/watermelon.svg');
+}
+
+.selected-banana {
+  box-shadow: 0px 4px 10px var(--ion-color-custom-yellow);
+}
+
+.selected-apple {
+  box-shadow: 0px 4px 10px var(--ion-color-success);
+}
+
+.selected-watermelon {
+  box-shadow: 0px 4px 10px var(--ion-color-danger);
+}
+

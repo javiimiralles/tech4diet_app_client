@@ -1,0 +1,195 @@
+/* Estilos de font-awesome */
+@import '@fortawesome/fontawesome-free/css/all.min.css';
+
+/* Aplicar fuentes a toda la app */
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@500&display=swap');
+
+/* Estilos generales */
+* {
+  font-family: 'Raleway', sans-serif;
+}
+
+body {
+  --ion-background-color: var(--ion-color-light);
+}
+
+.ion-page {
+  justify-content: flex-start !important;
+}
+
+.flex-container {
+  display: flex !important;
+  justify-content: space-between !important;
+  width: 100% !important;
+}
+
+.left-side {
+  text-align: left !important;
+}
+
+.right-side {
+  text-align: right !important;
+}
+
+.subtitle {
+  color: gray !important;
+  font-size: small !important;
+}
+
+.primer-plano {
+  z-index: 99999 !important;
+}
+
+
+/* Colores */
+.primary-color {
+  color: var(--ion-color-primary);
+}
+
+.secondary-color {
+  color: var(--ion-color-secondary);
+}
+
+.warning-color {
+  color: var(--ion-color-warning);
+}
+
+.danger-color {
+  color: var(--ion-color-danger);
+}
+
+.success-color {
+  color: var(--ion-color-success);
+}
+
+.custom-yellow-color {
+  color: var(--ion-color-custom-yellow);
+}
+
+.custom-blue-color {
+  color: var(--ion-color-custom-blue);
+}
+
+/* Angular Material */
+mat-form-field {
+  display: block !important;
+  border-bottom: none !important;
+}
+
+mat-form-field div {
+  background-color: white !important;
+  padding-right: 5px !important;
+}
+
+mat-datepicker-content {
+  border-radius: 20px !important;
+}
+
+.cdk-overlay-pane.mat-datepicker-popup {
+  top: 25% !important;
+}
+
+.mat-mdc-form-field-subscript-wrapper, .mdc-line-ripple {
+  display: none;
+}
+
+/* Toolbar */
+ion-toolbar {
+  color: var(--ion-color-primary);
+  --border-color: transparent;
+  box-shadow: none;
+}
+
+/* Items */
+ion-item {
+  --background: white;
+  --padding-start: 20px;
+  --padding-end: 20px;
+  --padding-top: 4px;
+  --padding-bottom: 4px;
+  --border-radius: 20px;
+  --highlight-background: transparent; /* Elimina el resaltado/fondo en el foco */
+  --highlight-color-focused: transparent; /* Elimina el color del resaltado en foco */
+  border-radius: 20px;
+  border-bottom: 0.5px solid lightgray;
+}
+
+/* Cards */
+ion-card {
+  background-color: white;
+  border-radius: 30px;
+}
+
+/* Buttons */
+ion-button {
+  --border-radius: 50px;
+}
+
+.button-icon-right {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.button-icon-right ion-icon {
+  margin-left: auto;
+}
+
+/* Alerts */
+.alert-button.sc-ion-alert-md.text-danger {
+  color: var(--ion-color-danger);
+}
+
+.alert-button.sc-ion-alert-md.d-inline {
+  display: inline !important;
+}
+
+.alert-button.sc-ion-alert-ios.text-danger {
+  color: var(--ion-color-danger);
+  border-top: none;
+}
+
+.alert-button.sc-ion-alert-ios.d-inline {
+  display: inline !important;
+}
+
+/* Searchbar */
+ion-searchbar {
+  --background: white !important;
+  --border-radius: 25px !important;
+  --icon-color: var(--ion-color-primary) !important;
+  --clear-button-color: var(--ion-color-danger) !important;
+}
+
+/* Boton flotante */
+ion-fab {
+  margin-bottom: 60px;
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+}
+
+/* Modales */
+.custom-modal {
+  --width: 80%;
+  --height: 30%;
+  --border-radius: 20px;
+}
+
+.fix-height {
+  --height: 35%;
+}
+
+/* BarcodeScanner */
+body.scanner-active {
+  --background: transparent;
+  --ion-background-color: transparent;
+}
+
+.custom-tab-bar.scanner-active {
+  display: none !important;
+}
+
+ion-header.scanner-active {
+  display: none !important;
+}

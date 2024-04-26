@@ -1,0 +1,17 @@
+<!-- Header con sidebar -->
+<ion-menu *ngIf="!simpleHeader" contentId="main-content">
+  <ion-header class="ion-no-border">
+    <ion-toolbar color="success">
+      <ion-title color="light"><b>Tech4Diet App</b></ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content class="ion-padding">
+    <ion-list lines="none">
+      <ion-item *ngFor="let item of sidebarItems" [routerLink]="item.url" routerLinkActive #rla="routerLinkActive" (click)="closeMenu()">
+        <ion-icon *ngIf="rla.isActive" class="bold" [name]="item.icono"></ion-icon>
+        <ion-icon *ngIf="!rla.isActive" [name]="item.icono + '-outline'"></ion-icon>
+        <span [ngClass]="rla.isActive ? 'bold' : ''" >{{ item.nombre }}</span>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-menu>

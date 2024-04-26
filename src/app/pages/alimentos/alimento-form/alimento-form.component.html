@@ -1,0 +1,142 @@
+<form #alimentoForm="ngForm" class="ion-padding" (ngSubmit)="onSubmit(alimentoForm)">
+
+  <ion-item lines="none">
+    <ion-input
+      type="text"
+      label="Nombre *"
+      labelPlacement="floating"
+      ngModel
+      name="nombre"
+      #nombre="ngModel"
+      [(ngModel)]="nombreInput"
+      required>
+    </ion-input>
+  </ion-item>
+  <ion-text color="danger" *ngIf="nombre.invalid && nombre.touched">
+    <p class="ion-padding-start">El nombre es obligatorio</p>
+  </ion-text>
+
+  <ion-item lines="none">
+    <ion-input
+      type="text"
+      label="Marca"
+      labelPlacement="floating"
+      ngModel
+      name="marca"
+      [(ngModel)]="marcaInput">
+    </ion-input>
+  </ion-item>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-item lines="none">
+          <ion-input
+            type="number"
+            label="Cantidad *"
+            labelPlacement="floating"
+            ngModel
+            name="cantidad"
+            #cantidad="ngModel"
+            [(ngModel)]="cantidadInput"
+            required>
+          </ion-input>
+        </ion-item>
+        <ion-text color="danger" *ngIf="cantidad.invalid && cantidad.touched">
+          <p class="ion-padding-start">La cantidad es obligatoria</p>
+        </ion-text>
+      </ion-col>
+      <ion-col>
+        <ion-item lines="none">
+          <ion-select ngModel name="unidad" #unidad="ngModel" [(ngModel)]="unidadSelect" label="Unidad *" labelPlacement="floating" required>
+            <ion-select-option value="gramos">gramos</ion-select-option>
+            <ion-select-option value="mililitros">mililitros</ion-select-option>
+            <ion-select-option value="unidades">unidades</ion-select-option>
+            <ion-select-option value="otro">Otro</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-text color="danger" *ngIf="unidad.invalid && unidad.touched">
+          <p class="ion-padding-start">La unidad es obligatoria</p>
+        </ion-text>
+        <ion-item *ngIf="unidad.value === 'otro'" lines="none">
+          <ion-input ngModel name="unidadPersonalizada" [(ngModel)]="unidadPersonalizada" placeholder="Unidad"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-list-header>
+    <ion-label>Información nutricional (por {{ cantidad.value }}  {{ unidad.value !== 'otro' ? unidad.value : unidadPersonalizada }})</ion-label>
+  </ion-list-header>
+
+  <ion-item lines="none">
+    <ion-input
+      type="number"
+      ngModel
+      name="calorias"
+      #calorias="ngModel"
+      label="Calorías *"
+      labelPlacement="floating"
+      [(ngModel)]="caloriasInput"
+      required>
+    </ion-input>
+  </ion-item>
+  <ion-text color="danger" *ngIf="calorias.invalid && calorias.touched">
+    <p class="ion-padding-start">Las calorías son obligatorias</p>
+  </ion-text>
+
+  <ion-item lines="none">
+    <ion-input
+      type="number"
+      ngModel
+      name="carbohidratos"
+      #carbohidratos="ngModel"
+      label="Carbohidratos *"
+      labelPlacement="floating"
+      [(ngModel)]="carbosInput"
+      required>
+    </ion-input>
+  </ion-item>
+  <ion-text color="danger" *ngIf="carbohidratos.invalid && carbohidratos.touched">
+    <p class="ion-padding-start">Los carbohidratos son obligatorios</p>
+  </ion-text>
+
+  <ion-item lines="none">
+    <ion-input
+      type="number"
+      ngModel
+      name="proteinas"
+      #proteinas="ngModel"
+      label="Proteínas *"
+      labelPlacement="floating"
+      [(ngModel)]="proteinasInput"
+      required>
+    </ion-input>
+  </ion-item>
+  <ion-text color="danger" *ngIf="proteinas.invalid && proteinas.touched">
+    <p class="ion-padding-start">Las proteínas son obligatorias</p>
+  </ion-text>
+
+  <ion-item lines="none">
+    <ion-input
+      type="number"
+      ngModel
+      name="grasas"
+      #grasas="ngModel"
+      label="Grasas *"
+      labelPlacement="floating"
+      [(ngModel)]="grasasInput"
+      required>
+    </ion-input>
+  </ion-item>
+  <ion-text color="danger" *ngIf="grasas.invalid && grasas.touched">
+    <p class="ion-padding-start">Las grasas son obligatorias</p>
+  </ion-text>
+
+  <ion-row>
+    <ion-col>
+      <ion-button color="success" expand="block" type="submit" [disabled]="!alimentoForm.valid">Guardar</ion-button>
+    </ion-col>
+  </ion-row>
+
+</form>

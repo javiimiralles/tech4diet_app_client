@@ -1,0 +1,205 @@
+<div *ngIf="!realizandoRegistro">
+  <ion-header class="ion-no-border">
+    <ion-toolbar>
+      <ion-title>Registro</ion-title>
+      <ion-buttons slot="end" [routerLink]="'/login'">
+        <ion-button>Ir al Login</ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+    <ion-progress-bar [value]="progressValue"></ion-progress-bar>
+  </ion-header>
+
+  <div class="ion-padding registration-container">
+    <!--============= Step 1 (inputs nombre, email, passwords) ===================-->
+    <div *ngIf="currentStep === 1" [formGroup]="step1Form" class="form-container">
+      <ion-item lines="none" class="ion-margin-bottom">
+        <ion-input formControlName="nombre" label="Nombre" labelPlacement="floating"></ion-input>
+      </ion-item>
+      <ion-item lines="none" class="ion-margin-bottom">
+        <ion-input type="email" formControlName="email" label="Email" labelPlacement="floating"></ion-input>
+      </ion-item>
+      <ion-item lines="none" class="ion-margin-bottom">
+        <ion-input type="password" formControlName="password" label="Contraseña" labelPlacement="floating"></ion-input>
+      </ion-item>
+      <ion-item lines="none">
+        <ion-input type="password" formControlName="repeatPassword" label="Repite la contraseña" labelPlacement="floating"></ion-input>
+      </ion-item>
+    </div>
+    <!--============= Fin Step 1 (inputs nombre, email, passwords) ===================-->
+
+    <!--============= Step 2 (sexo) ===================-->
+    <div *ngIf="currentStep === 2" class="form-container">
+      <ion-card class="card card-man" [ngClass]="sexo === 'HOMBRE' ? 'selected' : ''" (click)="selectSexo('HOMBRE')">
+        <ion-card-header>
+          <ion-card-title><strong>Hombre</strong></ion-card-title>
+        </ion-card-header>
+      </ion-card>
+      <ion-card class="card card-woman" [ngClass]="sexo === 'MUJER' ? 'selected' : ''" (click)="selectSexo('MUJER')">
+        <ion-card-header>
+          <ion-card-title><strong>Mujer</strong></ion-card-title>
+        </ion-card-header>
+      </ion-card>
+    </div>
+    <!--============= Fin Step 2 (sexo) ===================-->
+
+    <!--============= Step 3 (altura) ===================-->
+    <div *ngIf="currentStep === 3" class="form-container ion-text-center">
+      <h1 class="title">¿Cuánto mides?</h1>
+      <app-number-picker [selectedNumber]="altura" [min]="130" [max]="250" [unidad]="'cm'" (numberChange)="onHeightChange($event)"></app-number-picker>
+    </div>
+    <!--============= Fin Step 3 (altura) ===================-->
+
+    <!--============= Step 4 (edad) ===================-->
+    <div *ngIf="currentStep === 4" class="form-container ion-text-center">
+      <h1 class="title">¿Cuál es tu edad?</h1>
+      <app-number-picker [selectedNumber]="edad" [min]="0" [max]="99" (numberChange)="onAgeChange($event)"></app-number-picker>
+    </div>
+    <!--============= Fin Step 4 (edad) ===================-->
+
+    <!--============= Step 5 (peso) ===================-->
+    <div *ngIf="currentStep === 5" class="form-container ion-text-center">
+      <h1 class="title">¿Cuánto pesas?</h1>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <app-number-picker [selectedNumber]="pesoEntero" [min]="20" [max]="200" size="small" align="left" [dot]="true" (numberChange)="onWeigthIntChange($event)"></app-number-picker>
+          </ion-col>
+          <ion-col>
+            <app-number-picker [selectedNumber]="pesoDecimal" [min]="0" [max]="95" size="small" align="end" unidad="kg" [step]="5" (numberChange)="onWeigthDecimalChange($event)"></app-number-picker>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+    <!--============= Fin Step 5 (peso) ===================-->
+
+    <!--============= Step 6 (tipo plan) ===================-->
+    <div *ngIf="currentStep === 6" class="form-container">
+      <h1 class="title ion-text-center">¿Cuál es tu objetivo?</h1>
+      <ion-card class="card card-banana" [ngClass]="plan === 'Ganar peso' ? 'selected-banana' : ''" (click)="selectPlan('Ganar peso')">
+        <ion-card-header>
+          <ion-card-title><strong>Ganar peso</strong></ion-card-title>
+        </ion-card-header>
+      </ion-card>
+      <ion-card class="card card-apple" [ngClass]="plan === 'Mantener peso' ? 'selected-apple' : ''" (click)="selectPlan('Mantener peso')">
+        <ion-card-header>
+          <ion-card-title><strong>Mantener peso</strong></ion-card-title>
+        </ion-card-header>
+      </ion-card>
+      <ion-card class="card card-watermelon" [ngClass]="plan === 'Perder peso' ? 'selected-watermelon' : ''" (click)="selectPlan('Perder peso')">
+        <ion-card-header>
+          <ion-card-title><strong>Perder peso</strong></ion-card-title>
+        </ion-card-header>
+      </ion-card>
+    </div>
+    <!--============= Fin Step 6 (tipo plan) ===================-->
+
+    <!--============= Step 7 (nivel actividad fisica) ===================-->
+    <div *ngIf="currentStep === 7" class="form-container">
+      <h1 class="title ion-text-center">¿Cuál es tu nivel de actividad?</h1>
+      <ion-list lines="none">
+        <ion-radio-group [value]="nivelActividad" (click)="handleNivelActividadChange($event)">
+          <ion-item class="ion-margin-bottom">
+            <ion-radio value="Sedentario">Sedentario</ion-radio>
+          </ion-item>
+          <ion-item class="ion-margin-bottom">
+            <ion-radio value="Moderado">Moderado</ion-radio>
+          </ion-item>
+          <ion-item class="ion-margin-bottom">
+            <ion-radio value="Alto">Alto</ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-radio value="Muy alto">Muy alto</ion-radio>
+          </ion-item>
+        </ion-radio-group>
+      </ion-list>
+    </div>
+    <!--============= Fin Step 7 (nivel actividad fisica) ===================-->
+
+    <!--============= Step 8 (peso objetivo) ===================-->
+    <h3 *ngIf="currentStep === 8" class="title ion-text-center">¿Quieres establecer un objetivo de peso?</h3>
+    <div *ngIf="currentStep === 8" class="form-container">
+      <ion-card class="ion-text-center" (click)="openModal()">
+        <ion-card-header color="success">
+          <ion-card-title>Sí, quiero ponerme metas</ion-card-title>
+        </ion-card-header>
+      </ion-card>
+      <ion-card class="ion-text-center" (click)="noRegistrarObjetivo()">
+        <ion-card-header color="danger">
+          <ion-card-title>No, prefiero ir por libre</ion-card-title>
+        </ion-card-header>
+      </ion-card>
+    </div>
+
+    <ion-modal>
+      <ng-template>
+        <ion-header class="ion-no-border"  style="margin-bottom: 5em;">
+          <ion-toolbar>
+            <ion-title>Peso objetivo</ion-title>
+          </ion-toolbar>
+        </ion-header>
+        <ion-content class="ion-padding">
+          <ion-grid>
+            <ion-row>
+              <ion-col>
+                <app-number-picker [selectedNumber]="pesoObjetivoEntero" [min]="20" [max]="200" size="small" align="left" [dot]="true" (numberChange)="onTargetIntChange($event)"></app-number-picker>
+              </ion-col>
+              <ion-col>
+                <app-number-picker [selectedNumber]="pesoObjetivoDecimal" [min]="0" [max]="95" size="small" align="end" unidad="kg" [step]="5" (numberChange)="onTargetDecimalChange($event)"></app-number-picker>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-content>
+        <ion-footer class="ion-no-border flex-container">
+          <div class="left-side">
+            <ion-button color="danger" fill="clear" size="large" (click)="closeModal()">Cancelar</ion-button>
+          </div>
+          <div class="right-side">
+            <ion-button color="success" fill="clear" size="large" (click)="confirmModal()">Aceptar</ion-button>
+          </div>
+        </ion-footer>
+      </ng-template>
+    </ion-modal>
+    <!--============= Fin Step 8 (peso objetivo) ===================-->
+
+    <!--============= Step 9 (distribucion comidas) ===================-->
+    <h3 *ngIf="currentStep === 9" class="title ion-text-center">Distribución de tus comidas</h3>
+    <div *ngIf="currentStep === 9" class="form-container ion-text-center">
+      <ion-list lines="none">
+        <ion-reorder-group [disabled]="false" (ionItemReorder)="handleReorderDistribucion($any($event))">
+          <ion-item *ngFor="let item of distribucionComidas; let i = index;" class="ion-margin" (click)="deleteComida(i)">
+            <ion-reorder slot="start"></ion-reorder>
+            <ion-label>{{ item }}</ion-label>
+            <ion-icon name="close-circle" color="danger" slot="end"></ion-icon>
+          </ion-item>
+        </ion-reorder-group>
+      </ion-list>
+      <ion-button color="success" fill="clear" (click)="presentAlert()"><ion-icon name="add-circle" style="padding-right: 10px;"></ion-icon> Añadir comida</ion-button>
+    </div>
+    <!--============= Fin Step 9 (distribucion comidas) ===================-->
+
+    <!--============= Botones ===================-->
+    <div class="flex-container">
+      <div class="left-side">
+        <ion-button *ngIf="currentStep > 1" class="ion-margin-top" color="secondary" (click)="previousStep()">
+          Volver <ion-icon name="chevron-back" slot="start"></ion-icon>
+        </ion-button>
+      </div>
+      <div class="right-side" *ngIf="currentStep < totalSteps">
+        <ion-button class="ion-margin-top" color="success" (click)="validate()"
+          [disabled]="(currentStep === 1 && !step1Form.valid) || (currentStep === 2 && sexo === null) || (currentStep === 6 && plan === null)">
+          Continuar <ion-icon name="chevron-forward" slot="end"></ion-icon>
+        </ion-button>
+      </div>
+      <div class="right-side" *ngIf="currentStep === totalSteps">
+        <ion-button class="ion-margin-top" color="success" [disabled]="(currentStep === totalSteps && distribucionComidas.length === 0)" (click)="validate()">
+          Finalizar <ion-icon name="chevron-forward" slot="end"></ion-icon>
+        </ion-button>
+      </div>
+    </div>
+    <!--============= Fin Botones ===================-->
+  </div>
+</div>
+
+<app-loader *ngIf="realizandoRegistro" [message]="'Realizando registro...'"></app-loader>
+
+

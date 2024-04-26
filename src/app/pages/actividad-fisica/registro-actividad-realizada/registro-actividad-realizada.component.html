@@ -1,0 +1,41 @@
+<div class="ion-padding">
+  <h2>{{ actividadFisicaPadre.nombre }}</h2>
+  <p style="color: gray;">{{ actividadFisicaPadre.calorias }} cal. cada {{ actividadFisicaPadre.tiempoReferencia }} min.</p>
+
+  <div>
+    <ion-datetime-button datetime="datetime"></ion-datetime-button>
+    <ion-modal [keepContentsMounted]="true">
+      <ng-template>
+        <ion-datetime id="datetime" presentation="date" [(ngModel)]="fecha"></ion-datetime>
+      </ng-template>
+    </ion-modal>
+
+    <ion-grid class="ion-margin-top">
+      <ion-row>
+        <ion-col>
+          <ion-item lines="none">
+            <ion-input type="number" [(ngModel)]="duracion" (ionInput)="onDuracionInputChange($event)"></ion-input> min
+          </ion-item>
+          <ion-text color="danger" *ngIf="showError">La duración es obligatoria</ion-text>
+        </ion-col>
+        <ion-col class="cal-gastadas-column">
+          <span>{{ caloriasGastadas }} cal</span>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-item lines="none" class="ion-margin-top">
+      <ion-textarea label="Notas" labelPlacement="floating" maxlength="300" rows="10" [(ngModel)]="notas"></ion-textarea>
+    </ion-item>
+
+    <ion-row class="ion-margin-top">
+      <ion-col>
+        <ion-button color="success" expand="block" [disabled]="duracion == null || duracion == 0" (click)="submit()">Aceptar</ion-button>
+      </ion-col>
+      <ion-col *ngIf="idActividadRealizada !== 'nuevo'" >
+        <ion-button color="danger" expand="block" (click)="presentConfirmDeleteAlert()">Eliminar</ion-button>
+      </ion-col>
+    </ion-row>
+
+  </div>
+</div>

@@ -1,0 +1,75 @@
+<!--=============== Accordion con las medidas corporales =============  -->
+<ion-accordion-group class="ion-padding">
+  <ion-accordion *ngFor="let medida of medidasCorporales">
+    <ion-item slot="header">
+      <ion-label>{{ medida.nombre }}</ion-label>
+      <ion-icon name="trash" color="danger" (click)="presentConfirmDeleteAlert(medida.uid, $event)"></ion-icon>
+    </ion-item>
+    <div slot="content">
+      <ion-item class="input-item" lines="none" color="light">
+        <ion-input
+          type="number"
+          [(ngModel)]="medida.medida1"
+          [placeholder]="medida.bilateral ? 'Izquierda' : 'Escribe aquí'"
+          helperText="centímetros"
+          (ngModelChange)="detectarCambios(medida.uid, 'medida1')">
+        </ion-input>
+        <ion-button fill="clear" slot="end" (click)="updateMedidaCorporal(medida, 'medida1')" *ngIf="cambiosDetectados[medida.uid]?.medida1">
+          <ion-icon slot="icon-only" name="save" color="success"></ion-icon>
+        </ion-button>
+      </ion-item>
+      <ion-item *ngIf="medida.bilateral" class="input-item" lines="none" color="light">
+        <ion-input
+          type="number"
+          [(ngModel)]="medida.medida2"
+          [placeholder]="medida.bilateral ? 'Derecha' : 'Escribe aquí'"
+          helperText="centímetros"
+          (ngModelChange)="detectarCambios(medida.uid, 'medida2')">
+        </ion-input>
+        <ion-button fill="clear" slot="end" (click)="updateMedidaCorporal(medida, 'medida2')" *ngIf="cambiosDetectados[medida.uid]?.medida2">
+          <ion-icon slot="icon-only" name="save" color="success"></ion-icon>
+        </ion-button>
+      </ion-item>
+    </div>
+  </ion-accordion>
+</ion-accordion-group>
+<!--=============== Fin Accordion con las medidas corporales =============  -->
+
+<!--=============== Boton crear medida corporal =============  -->
+<ion-fab slot="fixed" vertical="bottom" horizontal="end">
+  <ion-fab-button color="secondary" id="open-modal">
+    <ion-icon name="add-outline"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
+<!--=============== Fin Boton crear medida corporal =============  -->
+
+<!--=============== Modal crear medida corporal =============  -->
+<ion-modal trigger="open-modal" class="custom-modal fix-height">
+  <ng-template>
+    <ion-header class="ion-no-border">
+      <ion-toolbar>
+        <ion-title>Nueva medida corporal</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding">
+      <ion-item lines="none" class="no-margin">
+        <ion-input label="Nombre" labelPlacement="floating" [(ngModel)]="nombreNuevaMedida"></ion-input>
+      </ion-item>
+      <ion-text *ngIf="showError" color="danger">
+        Debes introducir un valor
+      </ion-text>
+      <ion-checkbox color="secondary" class="ion-padding-top" [(ngModel)]="esBilateral">¿Es bilateral?</ion-checkbox>
+    </ion-content>
+    <ion-footer class="ion-no-border">
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-button color="success" (click)="createMedidaCorporal()">Aceptar</ion-button>
+        </ion-buttons>
+        <ion-buttons slot="end">
+          <ion-button (click)="closeModal()">Cancelar</ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-footer>
+  </ng-template>
+</ion-modal>
+<!--=============== Fin Modal crear medida corporal =============  -->

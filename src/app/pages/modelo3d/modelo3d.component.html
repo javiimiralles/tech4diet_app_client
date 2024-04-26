@@ -1,0 +1,35 @@
+<ion-item *ngIf="!noResultsFound" lines="none" id="date-picker">
+  <ion-button fill="clear" slot="start" (click)="changeDate(-1)" [disabled]="currentIndex === 0">
+    <ion-icon slot="icon-only" name="chevron-back-outline"></ion-icon>
+  </ion-button>
+  <ion-button fill="clear" slot="start" (click)="changeDate(1)" [disabled]="currentIndex === modelos3D.length - 1">
+    <ion-icon slot="icon-only" name="chevron-forward-outline"></ion-icon>
+  </ion-button>
+  <ion-label id="open-modal" class="ion-text-center">
+    {{ formatedDate }}
+  </ion-label>
+</ion-item>
+
+<app-loader *ngIf="loadingModel" message="Cargando modelo 3D"></app-loader>
+
+<div *ngIf="noResultsFound" class="no-model-container">
+  <ion-text class="ion-text-center" color="primary">
+    <h3>Aún no has cargado ningún modelo 3D</h3>
+  </ion-text>
+</div>
+
+<div id="modelo3D"></div>
+
+<ion-fab *ngIf="!noResultsFound" style="margin-right: 70px;" slot="fixed" vertical="bottom" horizontal="end">
+  <ion-fab-button color="danger" (click)="presentdeleteModeloAlert()">
+    <ion-icon name="trash-outline"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
+
+<ion-fab slot="fixed" vertical="bottom" horizontal="end">
+  <ion-fab-button color="secondary" (click)="openModelo3DFormModal()">
+    <ion-icon name="add-outline"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
+
+

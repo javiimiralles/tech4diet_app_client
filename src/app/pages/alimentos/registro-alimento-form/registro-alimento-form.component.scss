@@ -1,0 +1,34 @@
+.d-inline {
+  display: inline;
+}
+
+.product-title {
+  font-size: 18px;
+}
+
+.macronutrientes-container ion-row ion-col h2 {
+  font-size: 20px;
+}
+
+ion-item {
+  border: none;
+}
+
+ion-input {
+  flex: 1; /* Permite que el input se expanda para llenar el espacio disponible */
+  border-bottom: 1px solid gray;
+}
+
+ion-label {
+  flex-shrink: 0; /* Previene que la etiqueta se encoja */
+}
+
+.error {
+  color: var(--ion-color-danger);
+  border-color: var(--ion-color-danger);
+}
+
+ion-card-title {
+  font-weight: bold;
+  font-size: small;
+}

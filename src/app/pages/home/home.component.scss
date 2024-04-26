@@ -1,0 +1,28 @@
+.weight-card ion-icon {
+  font-size: 2em;
+  color: var(--ion-color-primary);
+}
+
+.weight-card strong {
+  font-size: 2em;
+  color: var(--ion-color-success);
+}
+
+.calories-display {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.calories-number {
+  font-size: 2.5rem;
+  color: var(--ion-color-success);
+  margin-right: 1rem;
+}
+
+.calories-text {
+  display: flex;
+  flex-direction: column;
+  color: var(--ion-color-primary);
+  font-size: 1.2rem;
+}

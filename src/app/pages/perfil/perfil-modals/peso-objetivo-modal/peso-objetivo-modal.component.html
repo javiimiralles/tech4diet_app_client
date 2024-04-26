@@ -1,0 +1,33 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="close()">
+        <ion-icon slot="icon-only" name="chevron-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>{{ establecerObjetivoTxt }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding" style="position: relative; top: 10%;">
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <app-number-picker [selectedNumber]="pesoObjetivoEntero" [min]="20" [max]="200" size="small" align="left" [dot]="true" (numberChange)="onTargetIntChange($event)"></app-number-picker>
+      </ion-col>
+      <ion-col>
+        <app-number-picker [selectedNumber]="pesoObjetivoDecimal" [min]="0" [max]="95" size="small" align="end" unidad="kg" [step]="5" (numberChange)="onTargetDecimalChange($event)"></app-number-picker>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+<ion-footer class="ion-padding ion-no-border">
+  <ion-row>
+    <ion-col>
+      <ion-button expand="block" color="success" (click)="confirm(false)">Aceptar</ion-button>
+    </ion-col>
+    <ion-col *ngIf="tieneObjetivo">
+      <ion-button expand="block" color="danger" (click)="confirm(true)">Eliminar objetivo</ion-button>
+    </ion-col>
+  </ion-row>
+</ion-footer>
+

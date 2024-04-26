@@ -1,0 +1,38 @@
+<ion-item lines="none" id="date-picker">
+  <ion-button fill="clear" slot="start" (click)="changeDate(-1)">
+    <ion-icon slot="icon-only" name="chevron-back-outline"></ion-icon>
+  </ion-button>
+  <ion-button fill="clear" slot="start" (click)="changeDate(1)">
+    <ion-icon slot="icon-only" name="chevron-forward-outline"></ion-icon>
+  </ion-button>
+  <ion-label id="open-modal" class="ion-text-center" [ngClass]="mode === 'period' ? 'fs-small' : ''">
+    <ion-icon name="calendar-outline"></ion-icon>
+    {{ formatedDate }}
+  </ion-label>
+</ion-item>
+
+<!-- ========= Modal seleccion fecha ========== -->
+<ion-modal trigger="open-modal" class="custom-modal">
+  <ng-template>
+    <ion-datetime *ngIf="mode === 'day'"
+                presentation="date"
+                [value]="startDate.toISOString()"
+                (ionChange)="onModalDateChange($event)">
+    </ion-datetime>
+    <div *ngIf="mode === 'period'">
+      <mat-form-field>
+        <mat-date-range-input [rangePicker]="picker">
+          <input matStartDate [(ngModel)]="startDate" placeholder="Desde" >
+          <input matEndDate [(ngModel)]="endDate" placeholder="Hasta">
+        </mat-date-range-input>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-date-range-picker #picker></mat-date-range-picker>
+      </mat-form-field>
+    </div>
+    <ion-footer class="ion-no-border ion-text-right">
+      <ion-button fill="clear" (click)="closeModal()">Cancelar</ion-button>
+      <ion-button *ngIf="mode === 'period'" fill="clear" (click)="confirmPeriodModal()" [disabled]="startDate == null || endDate == null">Aceptar</ion-button>
+    </ion-footer>
+  </ng-template>
+</ion-modal>
+<!-- ========= Fin Modal seleccion fecha ========== -->
