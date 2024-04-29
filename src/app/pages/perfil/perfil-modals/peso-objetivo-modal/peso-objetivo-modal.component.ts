@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 
 @Component({
@@ -6,7 +6,7 @@ import { ModalController } from '@ionic/angular';
   templateUrl: './peso-objetivo-modal.component.html',
   styleUrls: ['./peso-objetivo-modal.component.scss'],
 })
-export class PesoObjetivoModalComponent  implements OnInit {
+export class PesoObjetivoModalComponent {
 
   @Input() pesoObjetivoEntero: number;
   @Input() pesoObjetivoDecimal: number;
@@ -14,8 +14,6 @@ export class PesoObjetivoModalComponent  implements OnInit {
   @Input() tieneObjetivo: boolean;
 
   constructor(private modalController: ModalController) { }
-
-  ngOnInit() {}
 
   onTargetIntChange(weightInt: number) {
     this.pesoObjetivoEntero = weightInt;

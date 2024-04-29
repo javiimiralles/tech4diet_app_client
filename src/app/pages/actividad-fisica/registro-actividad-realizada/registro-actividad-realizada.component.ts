@@ -18,6 +18,9 @@ export class RegistroActividadRealizadaComponent  implements OnInit {
   idActividadRealizada: string;
   actividadRealizada: ActividadRealizada;
 
+  saving: boolean = false;
+  removing: boolean = false;
+
   idActividadFisicaPadre: string;
   actividadFisicaPadre: ActividadFisica = new ActividadFisica('');
 
@@ -59,6 +62,7 @@ export class RegistroActividadRealizadaComponent  implements OnInit {
     }
     this.showError = false;
 
+    this.saving = true;
     if(this.idActividadRealizada === 'nuevo') {
       this.createActividadRealizada();
     } else {
@@ -100,8 +104,10 @@ export class RegistroActividadRealizadaComponent  implements OnInit {
     this.actividadesRealizadasService.createActividadRealizada(this.actividadRealizada).subscribe(res => {
       this.router.navigateByUrl('/actividad-fisica');
       this.toastService.presentToast('Nueva actividad realizada', 'success');
+      this.saving = false;
     }, (err) => {
       this.exceptionsService.throwError(err);
+      this.saving = false;
     });
   }
 
@@ -117,17 +123,22 @@ export class RegistroActividadRealizadaComponent  implements OnInit {
     this.actividadesRealizadasService.updateActividadRealizada(this.actividadRealizada).subscribe(res => {
       this.router.navigateByUrl('/actividad-fisica');
       this.toastService.presentToast('Actividad editada', 'success');
+      this.saving = false;
     }, (err) => {
       this.exceptionsService.throwError(err);
+      this.saving = false;
     });
   }
 
   deleteActividadRealizada() {
+    this.removing = true;
     this.actividadesRealizadasService.deleteActividadRealizada(this.idActividadRealizada).subscribe(res => {
       this.router.navigateByUrl('/actividad-fisica');
       this.toastService.presentToast('Actividad eliminada', 'success');
+      this.removing = false;
     }, (err) => {
       this.exceptionsService.throwError(err);
+      this.removing = false;
     });
   }
 

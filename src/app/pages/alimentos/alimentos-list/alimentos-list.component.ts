@@ -26,6 +26,8 @@ export class AlimentosListComponent  implements OnInit {
   noResultsFound: boolean = false;
   segmentActual: 'mis-alimentos' | 'biblioteca' = 'mis-alimentos';
 
+  loading: boolean = false;
+
   // para la captura de alimentos
   capturandoAlimento: boolean = false;
   model: any;
@@ -62,19 +64,24 @@ export class AlimentosListComponent  implements OnInit {
     this.noResultsFound = false;
     this.listaResultados = [];
     if(this.textoBusqueda.trim() !== '') {
+      this.loading = true;
       if(this.segmentActual === 'mis-alimentos') {
         this.alimentosService.cargarAlimentosPorUsuario(this.resultados, this.textoBusqueda).subscribe(res => {
           this.listaResultados = res['alimentos'];
           this.comprobarSiHayResultados();
+          this.loading = false;
         }, (err) => {
           this.exceptionsService.throwError(err);
+          this.loading = false;
         });
       } else {
         this.alimentosService.cargarAlimentosOpenFoodFacts(this.resultados, this.textoBusqueda).subscribe(res => {
           this.filterAlimentosData(res['searchResults']);
           this.comprobarSiHayResultados();
+          this.loading = false;
         }, (err) => {
           this.exceptionsService.throwError(err);
+          this.loading = false;
         });
       }
     }

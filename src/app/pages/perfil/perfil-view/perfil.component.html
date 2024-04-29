@@ -37,7 +37,10 @@
       </ion-radio-group>
     </ion-list>
 
-    <ion-button color="success" expand="block" (click)="updateUser()">Guardar</ion-button>
+    <ion-button color="success" expand="block" (click)="updateUser()" [disabled]="saving">
+      <i class="fas fa-spinner fa-spin ion-margin-end" *ngIf="saving"></i>
+      Guardar
+    </ion-button>
   </div>
   <!--=============== Fin Datos personales form ===================-->
 

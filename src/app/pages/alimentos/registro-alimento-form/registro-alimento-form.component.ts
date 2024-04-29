@@ -21,6 +21,7 @@ export class RegistroAlimentoFormComponent  implements OnInit {
   cantidadInput: number;
   categoria: string;
   errorMensaje: string = '';
+  saving: boolean = false;
 
   caloriasCalculadas: number = 0;
   carbosCalculados: number = 0;
@@ -86,6 +87,8 @@ export class RegistroAlimentoFormComponent  implements OnInit {
       return;
     }
 
+    this.saving = true;
+
     this.errorMensaje = '';
 
     const alimentoAgregar: any = {
@@ -97,9 +100,11 @@ export class RegistroAlimentoFormComponent  implements OnInit {
     this.diariosService.addAlimentoConsumido(this.idDiario, alimentoAgregar).subscribe(res => {
       this.router.navigateByUrl('/alimentos');
       this.toastService.presentToast('Alimento añadido', 'success');
+      this.saving = false;
     }, (err) => {
       this.router.navigateByUrl('/alimentos');
       this.exceptionsService.throwError(err);
+      this.saving = false;
     })
   }
 

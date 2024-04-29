@@ -30,10 +30,16 @@
 
     <ion-row class="ion-margin-top">
       <ion-col>
-        <ion-button color="success" expand="block" [disabled]="duracion == null || duracion == 0" (click)="submit()">Aceptar</ion-button>
+        <ion-button color="success" expand="block" [disabled]="duracion === null || duracion === 0 || saving || removing" (click)="submit()">
+          <i class="fas fa-spinner fa-spin ion-margin-end" *ngIf="saving"></i>
+          Aceptar
+        </ion-button>
       </ion-col>
       <ion-col *ngIf="idActividadRealizada !== 'nuevo'" >
-        <ion-button color="danger" expand="block" (click)="presentConfirmDeleteAlert()">Eliminar</ion-button>
+        <ion-button color="danger" expand="block" (click)="presentConfirmDeleteAlert()" [disabled]="saving || removing">
+          <i class="fas fa-spinner fa-spin ion-margin-end" *ngIf="removing"></i>
+          Eliminar
+        </ion-button>
       </ion-col>
     </ion-row>
 

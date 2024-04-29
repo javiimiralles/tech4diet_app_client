@@ -15,10 +15,16 @@
   <!-- ======= Fin Searchbar ======== -->
 
   <!-- ======= No se han encontrado resultado ======== -->
-  <div class="ion-text-center ion-padding" *ngIf="noResultsFound">
+  <div class="ion-text-center ion-padding" *ngIf="noResultsFound && !loading">
     <h1 style="color: var(--ion-color-primary);">Ups... No se han encontrado resultados</h1>
   </div>
   <!-- ======= Fin No se han encontrado resultado ======== -->
+
+  <!-- ======= Loading ======== -->
+  <div class="ion-text-center ion-padding" *ngIf="loading && !noResultsFound">
+    <ion-spinner color="secondary"></ion-spinner>
+  </div>
+  <!-- ======= Loading ======== -->
 
   <!-- ======= Lista resultados ======== -->
   <ion-list *ngIf="listaResultados.length > 0">

@@ -12,6 +12,8 @@ import { ExceptionsService } from 'src/app/services/exceptions.service';
 })
 export class ActividadFisicaViewComponent  implements OnInit {
 
+  loading: boolean = false;
+
   selectedDate: Date = new Date();
   actividadesRealizadas: ActividadRealizada[] = [];
   actividadesFisicasPadres: ActividadFisica[] = [];
@@ -33,6 +35,7 @@ export class ActividadFisicaViewComponent  implements OnInit {
   }
 
   cargarActividadesRealizadas() {
+    this.loading = true;
     this.actividadesRealizadasService.cargarActividadesRealizadasPorFecha(this.selectedDate).subscribe(res => {
       this.actividadesRealizadas = res['actividadesRealizadas'];
       this.caloriasGastadas = 0;
@@ -42,8 +45,10 @@ export class ActividadFisicaViewComponent  implements OnInit {
         }
         this.caloriasGastadas += actividad.caloriasGastadas;
       });
+      this.loading = false;
     }, (err) => {
       this.exceptionsService.throwError(err);
+      this.loading = false;
     });
   }
 

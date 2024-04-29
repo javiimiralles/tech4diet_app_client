@@ -18,6 +18,8 @@ export class CambiarPasswordModalComponent {
     newPassword2: ['', Validators.required],
   });
 
+  saving: boolean = false;
+
   constructor(
     private modalController: ModalController,
     private usuariosService: UsuariosService,
@@ -36,13 +38,16 @@ export class CambiarPasswordModalComponent {
   }
 
   updatePassword() {
+    this.saving = true;
     this.usuariosService.updatePassword(this.form.value).subscribe(res => {
       if(res['ok']) {
         this.toastService.presentToast('Contraseña actualizada', 'success');
         this.modalController.dismiss();
       }
+      this.saving = false;
     }, (err) => {
       this.exceptionsService.throwError(err);
+      this.saving = false;
     })
   }
 

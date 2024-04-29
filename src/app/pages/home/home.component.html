@@ -40,7 +40,7 @@
           <div>Actual</div>
           <div><strong>{{ pesoActual }} kg</strong></div>
         </ion-col>
-        <ion-col *ngIf="pesoObjetivo != null" size="6" class="ion-text-center">
+        <ion-col *ngIf="pesoObjetivo !== null" size="6" class="ion-text-center">
           <ion-icon name="flag-outline"></ion-icon>
           <div>Objetivo</div>
           <div><strong>{{ pesoObjetivo }} kg</strong></div>
@@ -67,7 +67,7 @@
       </div>
     </div>
   </ion-card-content>
-  <ion-card-content *ngIf="loadingDiario">
+  <ion-card-content *ngIf="loadingDiario" class="ion-text-center">
     <ion-spinner color="secondary"></ion-spinner>
 </ion-card-content>
 </ion-card>

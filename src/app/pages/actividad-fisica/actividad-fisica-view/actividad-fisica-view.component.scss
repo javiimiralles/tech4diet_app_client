@@ -29,3 +29,10 @@ ion-list {
 .no-activities-container {
   margin-top: 7rem;
 }
+
+.spinner-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50vh;
+}

@@ -11,6 +11,12 @@
 
 <ion-searchbar class="ion-margin-top" placeholder="Buscar actividades" [debounce]="1000" (ionInput)="onSearchbarChange($event);"></ion-searchbar>
 
+<!-- ======= Loading ======== -->
+<div class="ion-text-center ion-padding" *ngIf="loading && !noResultsFound">
+  <ion-spinner color="secondary"></ion-spinner>
+</div>
+<!-- ======= Loading ======== -->
+
 <!-- ======= Lista resultados ======== -->
 <ion-list *ngIf="actividadesFisicas.length > 0">
   <ion-item *ngFor="let actividad of actividadesFisicas" color="light" class="item-resultado" button (click)="goToRegistroActividadFisica(actividad.uid)">

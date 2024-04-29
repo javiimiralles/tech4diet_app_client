@@ -42,6 +42,8 @@ export type ChartOptions = {
 })
 export class PesosViewComponent  implements OnInit {
 
+  loading: boolean = false;
+
   segmentActual: 'listado' | 'estadisticas' = 'listado';
   startDate: Date = new Date();
   endDate: Date = new Date();
@@ -111,6 +113,7 @@ export class PesosViewComponent  implements OnInit {
   }
 
   cargarRegistrosDePeso() {
+    this.loading = true;
     this.pesosService.cargarRegistrosPesoPorFechas(this.startDate, this.endDate).subscribe(res => {
       if(res['registros']) {
         this.registrosPeso = res['registros'];
@@ -125,8 +128,10 @@ export class PesosViewComponent  implements OnInit {
           }).slice(0, 10).reverse();
         this.updateChartData();
       }
+      this.loading = false;
     }, (err) => {
       this.exceptionsService.throwError(err);
+      this.loading = false;
     });
   }
 

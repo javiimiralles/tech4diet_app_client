@@ -5,7 +5,7 @@
       <ion-label class="flex-container ion-margin-top">
         <div>
           <div class="product-title">{{ alimento.nombre }}</div>
-          <p *ngIf="alimento.marca != null" class="subtitle">{{ alimento.marca }}</p>
+          <p *ngIf="alimento.marca !== null" class="subtitle">{{ alimento.marca }}</p>
         </div>
         <div>
           <h1 class="d-inline primary-color" color="primary">{{ caloriasCalculadas | number: '1.0-2' }}</h1><span class="calorias-span primary-color"> cal</span>
@@ -53,10 +53,17 @@
 
     <ion-row class="ion-margin-top">
       <ion-col size="6">
-        <ion-button (click)="registrarAlimentoConsumido()" color="success" expand="block"><i class="fa-solid fa-plus ion-margin-end"></i> Añadir</ion-button>
+        <ion-button (click)="registrarAlimentoConsumido()" color="success" expand="block" [disabled]="saving">
+          <i *ngIf="!saving" class="fa-solid fa-plus ion-margin-end"></i>
+          <i *ngIf="saving" class="fas fa-spinner fa-spin ion-margin-end"></i>
+          Añadir
+        </ion-button>
       </ion-col>
       <ion-col size="6">
-        <ion-button color="primary" expand="block" [routerLink]="['/alimentos/form', alimento.uid]"><i class="fa-regular fa-pen-to-square ion-margin-end"></i> Editar</ion-button>
+        <ion-button color="primary" expand="block" [routerLink]="['/alimentos/form', alimento.uid]" [disabled]="saving">
+          <i class="fa-regular fa-pen-to-square ion-margin-end"></i>
+          Editar
+        </ion-button>
       </ion-col>
     </ion-row>
     <!-- ======= Fin Input ======= -->
@@ -76,7 +83,7 @@
             {{ alimento.cantidadReferencia | number: '1.0-2' }} {{ unidadAbrebiada }}
           </ion-col>
           <ion-col size="2">
-            {{ (cantidadInput != null ? cantidadInput  : 0) | number: '1.0-2' }} {{ unidadAbrebiada }}
+            {{ (cantidadInput !== null ? cantidadInput  : 0) | number: '1.0-2' }} {{ unidadAbrebiada }}
           </ion-col>
         </ion-row>
       </ion-grid>

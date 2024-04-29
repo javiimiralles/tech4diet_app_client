@@ -13,6 +13,8 @@ import { ToastService } from 'src/app/services/toast.service';
 })
 export class ActividadFisicaListComponent  implements OnInit {
 
+  loading: boolean = false;
+
   textoBusqueda: string = '';
   noResultsFound: boolean = false;
   actividadesFisicas: ActividadFisica[] = [];
@@ -42,14 +44,17 @@ export class ActividadFisicaListComponent  implements OnInit {
   }
 
   cargarActividadesFisicas(defaultOnly: boolean) {
+    this.loading = true;
     this.noResultsFound = false;
     this.actividadesFisicas = [];
     this.actividadesFisicasService.cargarActividadesFisicas(this.textoBusqueda, defaultOnly).subscribe(res => {
       this.actividadesFisicas = res['actividadesFisicas'];
       this.comprobarSiHayResultados();
+      this.loading = false;
     }, (err) => {
       this.exceptionsService.throwError(err);
       this.comprobarSiHayResultados();
+      this.loading = false;
     });
   }
 

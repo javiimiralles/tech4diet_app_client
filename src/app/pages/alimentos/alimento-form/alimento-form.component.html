@@ -135,7 +135,10 @@
 
   <ion-row>
     <ion-col>
-      <ion-button color="success" expand="block" type="submit" [disabled]="!alimentoForm.valid">Guardar</ion-button>
+      <ion-button color="success" expand="block" type="submit" [disabled]="!alimentoForm.valid || saving">
+        <i class="fas fa-spinner fa-spin ion-margin-end" *ngIf="saving"></i>
+        Guardar
+      </ion-button>
     </ion-col>
   </ion-row>
 

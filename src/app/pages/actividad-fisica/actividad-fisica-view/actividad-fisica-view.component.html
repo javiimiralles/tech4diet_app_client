@@ -30,8 +30,12 @@
       </ion-item>
   </ion-list>
 
-  <div class="ion-text-center no-activities-container" *ngIf="actividadesRealizadas.length == 0">
+  <div class="ion-text-center no-activities-container" *ngIf="actividadesRealizadas.length === 0 && !loading">
     <h2 style="color: var(--ion-color-primary);">No hay ninguna actividad realizada</h2>
+  </div>
+
+  <div *ngIf="loading" class="ion-text-center spinner-container">
+    <ion-spinner color="secondary"></ion-spinner>
   </div>
 </div>
 

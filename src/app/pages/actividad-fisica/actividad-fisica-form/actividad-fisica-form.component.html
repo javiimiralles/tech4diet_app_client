@@ -19,5 +19,8 @@
       Las calorías son obligatorias
     </ion-text>
   </ion-list>
-  <ion-button class="ion-margin-top" color="success" expand="block" [disabled]="disabledButton" (click)="submit()">Aceptar</ion-button>
+  <ion-button class="ion-margin-top" color="success" expand="block" [disabled]="disabledButton || saving" (click)="submit()">
+    <i class="fas fa-spinner fa-spin ion-margin-end" *ngIf="saving"></i>
+    Aceptar
+  </ion-button>
 </div>

@@ -15,6 +15,12 @@
 </div>
 <!-- ======= Fin Date picker ======== -->
 
+<!-- ====== Loading ========== -->
+<div *ngIf="loading" class="ion-text-center">
+  <ion-spinner color="secondary"></ion-spinner>
+</div>
+<!-- ====== Fin Loading ========== -->
+
 <!-- ======= Listado de registros de peso ======== -->
 <ion-list lines="none" *ngIf="segmentActual === 'listado' && registrosPeso.length > 0" class="ion-padding">
   <ion-item *ngFor="let registro of registrosPeso; let i = index" class="ion-margin-bottom" (click)="presentAlert(registro)">
@@ -62,7 +68,7 @@
       </ion-card-title>
     </ion-card-header>
     <ion-card-content>
-      <div id="chart" *ngIf="chartOptions != null">
+      <div id="chart" *ngIf="chartOptions !== null">
         <apx-chart
           [series]="chartOptions.series"
           [chart]="chartOptions.chart"

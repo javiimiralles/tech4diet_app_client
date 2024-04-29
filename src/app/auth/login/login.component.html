@@ -28,7 +28,7 @@
           La contraseña es obligatoria.
         </ion-text>
 
-        <ion-button class="button-icon-right ion-margin-top" color="success" expand="block" type="submit">
+        <ion-button class="button-icon-right ion-margin-top" color="success" expand="block" type="submit" [disabled]="waiting">
           <i class="fas fa-spinner fa-spin ion-margin-end" *ngIf="waiting"></i>
           Continuar <ion-icon name="chevron-forward"></ion-icon>
         </ion-button>

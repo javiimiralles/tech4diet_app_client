@@ -16,6 +16,8 @@ export class AlimentoFormComponent  implements OnInit {
 
   idAlimento: string = '';
 
+  saving: boolean = false;
+
   nombreInput: string;
   marcaInput: string;
   cantidadInput: number = 100;
@@ -71,6 +73,7 @@ export class AlimentoFormComponent  implements OnInit {
 
   onSubmit(form: NgForm) {
     if (form.valid) {
+      this.saving = true;
       const unidad = this.unidadSelect !== 'otro' ? this.unidadSelect : this.unidadPersonalizada;
       const alimento = new Alimento(null, this.nombreInput, this.marcaInput, this.cantidadInput, unidad, this.caloriasInput,
         this.carbosInput, this.proteinasInput, this.grasasInput);
@@ -92,9 +95,11 @@ export class AlimentoFormComponent  implements OnInit {
       this.diariosService.idAlimentoActual = res['alimento'].uid;
       this.router.navigateByUrl('/alimentos/registro');
       this.toastService.presentToast('Alimento creado', 'success');
+      this.saving = false;
     }, (err) => {
       this.router.navigateByUrl('/alimentos/list');
       this.exceptionsService.throwError(err);
+      this.saving = false;
     });
   }
 
@@ -103,9 +108,11 @@ export class AlimentoFormComponent  implements OnInit {
       this.diariosService.idAlimentoActual = this.idAlimento;
       this.router.navigateByUrl('/alimentos/registro');
       this.toastService.presentToast('Alimento editado', 'success');
+      this.saving = false;
     }, (err) => {
       this.router.navigateByUrl('/alimentos/list');
       this.exceptionsService.throwError(err);
+      this.saving = false;
     });
   }
 

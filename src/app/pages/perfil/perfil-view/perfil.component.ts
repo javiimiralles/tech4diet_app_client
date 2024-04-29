@@ -33,6 +33,7 @@ export class PerfilComponent implements OnInit {
   establecerObjetivoTxt: string;
 
   borrandoCuenta: boolean = false;
+  saving: boolean = false;
 
   constructor(
     private usuariosService: UsuariosService,
@@ -66,14 +67,17 @@ export class PerfilComponent implements OnInit {
   }
 
   updateUser() {
+    this.saving = true;
     const usuario = new Usuario(this.usuariosService.uid, this.nombre, this.email, null, this.sexo, this.altura, this.edad, null,
       this.pesoObjetivo, null, null, this.plan, this.distribucionComidas, this.configuracion);
 
     this.usuariosService.updateUser(usuario).subscribe(res => {
       this.updateInfoUser();
       this.toastService.presentToast('Perfil actualizado', 'success');
+      this.saving = false;
     }, (err) => {
       this.exceptionsService.throwError(err);
+      this.saving = false;
     })
   }
 

@@ -15,6 +15,8 @@ export class ActividadFisicaFormComponent  implements OnInit {
   idActividadFisica: string;
   actividadFisica: ActividadFisica;
 
+  saving: boolean = false;
+
   nombre: string;
   calorias: number;
   tiempoReferencia: number;
@@ -58,8 +60,10 @@ export class ActividadFisicaFormComponent  implements OnInit {
     this.actividadesFisicasService.createActividadFisica(this.actividadFisica).subscribe(res => {
       this.router.navigateByUrl('/actividad-fisica/list');
       this.toastService.presentToast('Actividad creada', 'success');
+      this.saving = false;
     }, (err) => {
       this.exceptionsService.throwError(err);
+      this.saving = false;
     });
   }
 
@@ -70,8 +74,10 @@ export class ActividadFisicaFormComponent  implements OnInit {
     this.actividadesFisicasService.updateActividadFisica(this.actividadFisica).subscribe(res => {
       this.router.navigateByUrl('/actividad-fisica/list');
       this.toastService.presentToast('Actividad editada', 'success');
+      this.saving = false;
     }, (err) => {
       this.exceptionsService.throwError(err);
+      this.saving = false;
     });
   }
 
@@ -88,6 +94,7 @@ export class ActividadFisicaFormComponent  implements OnInit {
 
     if(this.showNombreError || this.showTiempoError || this.showCaloriasError) return;
 
+    this.saving = true;
     if(this.idActividadFisica === 'nuevo') {
       this.createActividadFisica();
     } else {
