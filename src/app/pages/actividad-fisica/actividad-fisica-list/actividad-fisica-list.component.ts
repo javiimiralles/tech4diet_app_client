@@ -19,7 +19,7 @@ export class ActividadFisicaListComponent  implements OnInit {
   noResultsFound: boolean = false;
   actividadesFisicas: ActividadFisica[] = [];
 
-  segmentActual: 'mis-actividades' | 'biblioteca' = 'mis-actividades';
+  segmentActual: 'mis-actividades' | 'biblioteca' = 'biblioteca';
 
   constructor(
     private actividadesFisicasService: ActividadesFisicasService,

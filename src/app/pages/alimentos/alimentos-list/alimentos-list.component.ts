@@ -24,7 +24,7 @@ export class AlimentosListComponent  implements OnInit {
   textoBusqueda: string = '';
   resultados: number = 10;
   noResultsFound: boolean = false;
-  segmentActual: 'mis-alimentos' | 'biblioteca' = 'mis-alimentos';
+  segmentActual: 'mis-alimentos' | 'biblioteca' = 'biblioteca';
 
   loading: boolean = false;
 

@@ -1,11 +1,11 @@
 <div *ngIf="!capturandoAlimento">
   <!-- ======= Segments ======== -->
   <ion-segment (ionChange)="onSegmentChange($event)" [value]="segmentActual">
-    <ion-segment-button value="mis-alimentos">
-      <ion-label>Mis alimentos</ion-label>
-    </ion-segment-button>
     <ion-segment-button value="biblioteca">
       <ion-label>Biblioteca</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="mis-alimentos">
+      <ion-label>Mis alimentos</ion-label>
     </ion-segment-button>
   </ion-segment>
   <!-- ======= Fin Segments ======== -->
