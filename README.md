@@ -1,3 +1,5 @@
+![Portada Tech4Diet](https://github.com/user-attachments/assets/97ebfb86-19e1-44a5-afbb-4d85f8481a7d)
+
 # Frontend de la aplicación Tech4Diet App
 ### :information_source: Detalles del proyecto
 Este se trata del frontend de un aplicación de seguimiento nutricional y dietético. 
