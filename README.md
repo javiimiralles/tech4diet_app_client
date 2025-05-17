@@ -4,8 +4,10 @@
 ### :information_source: Detalles del proyecto
 Este se trata del frontend de un aplicación de seguimiento nutricional y dietético. 
 Es parte del Trabajo Final de Grado de Ingeniería Multimedia de Javier Miralles, tutorizado por Jorge Azorín López y Andrés Fuster Guilló, profesores de la Universidad de Alicante. 
-Es una contribución a [Tech4Diet](https://tech4d.ua.es/), un proyecto que desarrolla un sistema para medir la evolución física del 
+
+Este TFG es una contribución a [Tech4Diet](https://tech4d.ua.es/), un proyecto que desarrolla un sistema para medir la evolución física del 
 cuerpo humano en determinados tratamientos haciendo uso de las tecnologías más avanzadas de visión artificial.
+
 El frontend del proyecto se ha desarrollado utilizando los frameworks de <b>Angular</b> e <b>Ionic</b>.
 
 ---
